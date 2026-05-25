@@ -6,3 +6,9 @@ venues.json
 all_venues.txt
 all_venues.json
 invitations_backup.json
+txt_to_json_pretty_converter.py
+test.txt
+accepeted_papers.json
+desk_reject_notes.json
+desk_rejects.json
+*.json
