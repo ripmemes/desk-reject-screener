@@ -1,1 +1,8 @@
 .env
+invitations.txt
+invitations.json
+venues.txt
+venues.json
+all_venues.txt
+all_venues.json
+invitations_backup.json
