@@ -5,6 +5,35 @@ import json
 
 # this code was partially generated with the assistance of GitHub Copilot and Google Gemini, and thoroughly reviewed by me
 
+def parse_existing_data(path):
+    if os.path.exists(path):
+        with open(path, 'r', encoding='utf-8') as f:
+            try:
+                return json.load(f)
+            except json.JSONDecodeError:
+                return {}
+    else:
+        return {}
+    
+def download_pdf(note,target_dir):
+    try :
+        f = client.get_pdf(id=note.forum)
+        file_path = f"{target_dir}/{note.forum}.pdf"
+        os.makedirs(target_dir, exist_ok=True)
+        with open(file_path,'wb') as op:
+            op.write(f)
+    except Exception as e:
+        print(f"Failed to download paper {note.id}: {e}")
+
+def json_dumps_custom(file,data):
+    try :
+        with open(file, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+    except Exception as e :
+        print(f"An error occurred in json_dumps_custom: {e}")
+
+
+
 script_dir = os.path.dirname(__file__)
 
 dotenv_path = os.path.join(script_dir, '..', '.env')
@@ -16,12 +45,11 @@ pw = os.getenv("OPEN_REVIEW_PASSWORD")
 
 client = openreview.api.OpenReviewClient(
     baseurl='https://api2.openreview.net',
-    username='karim.keraani@tum.de',
+    username=username,
     password=pw
 )
 
 try:
-
     all_venues_file = "venues.json"
     invitations_file = "invitations.json"
     desk_rejects_file = "desk_rejects.json"
@@ -38,33 +66,32 @@ try:
         type='note'
     )
 
-    invitation_data = []
-    desk_reject_data = []
-    decision_data = []
-    if os.path.exists(desk_rejects_file):
-        with open(desk_rejects_file, 'r', encoding='utf-8') as f:
-            try:
-                unique_reasons = json.load(f)
-            except json.JSONDecodeError:
-                unique_reasons = [] # In case the file is empty or corrupted
-    else:
-        unique_reasons = {}
-    existing_data = []
+    invitation_data = parse_existing_data(invitations_file)
+    accepted_data = parse_existing_data(accepted_papers_file)
+    unique_reasons = parse_existing_data(desk_rejects_file)
     for (index, invitation) in enumerate(invitations):
-        invitation_data.append({
+        if len(unique_reasons) >= 10 and len(accepted_data) >= 10 :
+            break
+
+
+        invitation_data[invitation.id] = {
             'id': invitation.id,
             'content': invitation.content,
             'signatures': invitation.signatures,
             'writers': invitation.writers,
             'readers': invitation.readers,
             'invitees': invitation.invitees
-        })
+        }
+        
 
-        if invitation.id.endswith('/-/Desk_Rejection_Reversion'):
+        if invitation.id.endswith('/-/Desk_Rejection_Reversion') :
             new_id = invitation.id.replace('/-/Desk_Rejection_Reversion', '/-/Desk_Rejection')  
             desk_rejects = client.get_all_notes(invitation=new_id)
 
-            for(index, desk_rej_note) in enumerate(desk_rejects):
+            # for(_, desk_rej_note) in enumerate(desk_rejects):
+            for desk_rej_note in desk_rejects :
+                if len(unique_reasons) >= 10 :
+                    break
                 comments = desk_rej_note.content.get('desk_reject_comments', {}).get('value', 'No Comments')
                 reason_key = comments.split(':')[0].strip() if ':' in comments else comments.split('.')[0].strip()
                 obj ={
@@ -79,50 +106,39 @@ try:
                     'created_date': desk_rej_note.cdate,
                     'license': desk_rej_note.license
                 }
-                if reason_key not in unique_reasons and len(unique_reasons) < 10:
+                if reason_key not in unique_reasons :
                     unique_reasons[reason_key] = obj
-                    try :
-                        f = client.get_pdf(id=desk_rej_note.forum)
-                        target_dir = "../data/"
-                        file_path = f"{target_dir}{desk_rej_note.forum}.pdf"
-                        with open(file_path,'wb') as op:
-                            op.write(f)
-                    except Exception as e:
-                        print(f"Failed to download paper {desk_rej_note.id}: {e}")
-                desk_reject_data.append(obj)
+                    target_dir = "../data/desk-rejects"
+                    download_pdf(desk_rej_note,target_dir)
 
-        # elif invitation.id.endswith('/-/Public_Comment'):
-        #     new_id = invitation.id.replace('/-/Public_Comment', '/-/Decision')  
-        #     decision_notes = client.get_all_notes(invitation=new_id)
-        #     for decision_note in decision_notes:
-        #         if "accept" in decision_note.content['decision']['value'].lower():
-        #             decision_data.append({
-        #                 'id': decision_note.id,
-        #                 'title': decision_note.content.get('title', {}).get('value', 'No Title'),
-        #                 'decision': decision_note.content.get('decision', {}).get('value', 'No Decision'),
-        #                 'comment': decision_note.content.get('comment', {}).get('value', 'No Comment'),
-        #                 'forum_id': decision_note.forum,
-        #                 'submission_id': decision_note.replyto,
-        #                 'program_chairs': decision_note.signatures,
-        #                 'readers': decision_note.readers,
-        #                 'last_modified': decision_note.tmdate,
-        #                 'created_date': decision_note.cdate,
-        #                 'license': decision_note.license
-        #             })
-                
-            
-
-        
+        elif invitation.id.endswith('/-/Public_Comment'):
+            new_id = invitation.id.replace('/-/Public_Comment', '/-/Decision')  
+            decision_notes = client.get_all_notes(invitation=new_id)
+            for decision_note in decision_notes:
+                if len(accepted_data) >= 10 :
+                    break
+                if "accept" in decision_note.content['decision']['value'].lower():
+                    obj = {
+                        'id': decision_note.id,
+                        'title': decision_note.content.get('title', {}).get('value', 'No Title'),
+                        'decision': decision_note.content.get('decision', {}).get('value', 'No Decision'),
+                        'comment': decision_note.content.get('comment', {}).get('value', 'No Comment'),
+                        'forum_id': decision_note.forum,
+                        'submission_id': decision_note.replyto,
+                        'program_chairs': decision_note.signatures,
+                        'readers': decision_note.readers,
+                        'last_modified': decision_note.tmdate,
+                        'created_date': decision_note.cdate,
+                        'license': decision_note.license
+                    }
+                    accepted_data[decision_note.id] = obj
+                    target_dir = "../data/accepted"
+                    download_pdf(decision_note,target_dir)
 
 
-    with open(invitations_file, 'w', encoding='utf-8') as f:
-        json.dump(invitation_data, f, ensure_ascii=False, indent=4)
-    with open(desk_rejects_file, 'w', encoding='utf-8') as f:
-        json.dump(unique_reasons, f, ensure_ascii=False, indent=4)
-    with open(accepted_papers_file, 'w', encoding='utf-8') as f:
-        json.dump(decision_data, f, ensure_ascii=False, indent=4)
-
-
+    json_dumps_custom(invitations_file,invitation_data)
+    json_dumps_custom(desk_rejects_file,unique_reasons)
+    json_dumps_custom(accepted_papers_file,accepted_data,)
 
 except Exception as e:
     print(f"An error occurred: {e}")
