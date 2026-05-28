@@ -13,3 +13,5 @@ desk_reject_notes.json
 desk_rejects.json
 *.json
 backup/
+data/
+data/*

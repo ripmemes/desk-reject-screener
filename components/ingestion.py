@@ -3,7 +3,7 @@ import os
 import openreview
 import json
 
-# this code was partially generated with the assistance of GitHub Copilot and Google Gemini
+# this code was partially generated with the assistance of GitHub Copilot and Google Gemini, and thoroughly reviewed by me
 
 script_dir = os.path.dirname(__file__)
 
@@ -26,10 +26,6 @@ try:
     invitations_file = "invitations.json"
     desk_rejects_file = "desk_rejects.json"
     accepted_papers_file ="accepted_papers.json"
-    
-
-    
-
     all_venues = openreview.tools.get_all_venues(client)
     with open(all_venues_file, 'w', encoding='utf-8') as f:
         json.dump(all_venues, f, ensure_ascii=False, indent=4)
@@ -45,7 +41,15 @@ try:
     invitation_data = []
     desk_reject_data = []
     decision_data = []
-    unique_reasons = {}
+    if os.path.exists(desk_rejects_file):
+        with open(desk_rejects_file, 'r', encoding='utf-8') as f:
+            try:
+                unique_reasons = json.load(f)
+            except json.JSONDecodeError:
+                unique_reasons = [] # In case the file is empty or corrupted
+    else:
+        unique_reasons = {}
+    existing_data = []
     for (index, invitation) in enumerate(invitations):
         invitation_data.append({
             'id': invitation.id,
@@ -77,6 +81,14 @@ try:
                 }
                 if reason_key not in unique_reasons and len(unique_reasons) < 10:
                     unique_reasons[reason_key] = obj
+                    try :
+                        f = client.get_pdf(id=desk_rej_note.forum)
+                        target_dir = "../data/"
+                        file_path = f"{target_dir}{desk_rej_note.forum}.pdf"
+                        with open(file_path,'wb') as op:
+                            op.write(f)
+                    except Exception as e:
+                        print(f"Failed to download paper {desk_rej_note.id}: {e}")
                 desk_reject_data.append(obj)
 
         # elif invitation.id.endswith('/-/Public_Comment'):
@@ -106,7 +118,6 @@ try:
     with open(invitations_file, 'w', encoding='utf-8') as f:
         json.dump(invitation_data, f, ensure_ascii=False, indent=4)
     with open(desk_rejects_file, 'w', encoding='utf-8') as f:
-        # json.dump(desk_reject_data, f, ensure_ascii=False, indent=4)
         json.dump(unique_reasons, f, ensure_ascii=False, indent=4)
     with open(accepted_papers_file, 'w', encoding='utf-8') as f:
         json.dump(decision_data, f, ensure_ascii=False, indent=4)
