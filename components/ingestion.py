@@ -50,12 +50,12 @@ client = openreview.api.OpenReviewClient(
 )
 
 try:
-    all_venues_file = "venues.json"
-    invitations_file = "invitations.json"
-    desk_rejects_file = "desk_rejects.json"
-    accepted_papers_file ="accepted_papers.json"
+    ALL_VENUES_FILE = "venues.json"
+    INVITATIONS_FILE = "invitations.json"
+    DESK_REJECTS_FILE = "desk_rejects.json"
+    ACCEPTED_PAPERS_FILE ="accepted_papers.json"
     all_venues = openreview.tools.get_all_venues(client)
-    with open(all_venues_file, 'w', encoding='utf-8') as f:
+    with open(ALL_VENUES_FILE, 'w', encoding='utf-8') as f:
         json.dump(all_venues, f, ensure_ascii=False, indent=4)
 
 
@@ -66,9 +66,9 @@ try:
         type='note'
     )
 
-    invitation_data = parse_existing_data(invitations_file)
-    accepted_data = parse_existing_data(accepted_papers_file)
-    unique_reasons = parse_existing_data(desk_rejects_file)
+    invitation_data = parse_existing_data(INVITATIONS_FILE)
+    accepted_data = parse_existing_data(ACCEPTED_PAPERS_FILE)
+    unique_reasons = parse_existing_data(DESK_REJECTS_FILE)
     for (index, invitation) in enumerate(invitations):
         if len(unique_reasons) >= 10 and len(accepted_data) >= 10 :
             break
@@ -108,7 +108,7 @@ try:
                 }
                 if reason_key not in unique_reasons :
                     unique_reasons[reason_key] = obj
-                    target_dir = "../data/desk-rejects"
+                    target_dir = "../data/raw/desk-rejects"
                     download_pdf(desk_rej_note,target_dir)
 
         elif invitation.id.endswith('/-/Public_Comment'):
@@ -132,13 +132,13 @@ try:
                         'license': decision_note.license
                     }
                     accepted_data[decision_note.id] = obj
-                    target_dir = "../data/accepted"
+                    target_dir = "../data/raw/accepted"
                     download_pdf(decision_note,target_dir)
 
 
-    json_dumps_custom(invitations_file,invitation_data)
-    json_dumps_custom(desk_rejects_file,unique_reasons)
-    json_dumps_custom(accepted_papers_file,accepted_data,)
+    json_dumps_custom(INVITATIONS_FILE,invitation_data)
+    json_dumps_custom(DESK_REJECTS_FILE,unique_reasons)
+    json_dumps_custom(ACCEPTED_PAPERS_FILE,accepted_data,)
 
 except Exception as e:
     print(f"An error occurred: {e}")
