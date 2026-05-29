@@ -139,7 +139,8 @@ def run_ingestion():
 
         json_dumps_custom(INVITATIONS_FILE,invitation_data)
         json_dumps_custom(DESK_REJECTS_FILE,unique_reasons)
-        json_dumps_custom(ACCEPTED_PAPERS_FILE,accepted_data,)
+        json_dumps_custom(ACCEPTED_PAPERS_FILE,accepted_data)
+        print("Ingestion complete. Desk rejects and accepted papers data have been saved.\n")
 
     except Exception as e:
         print(f"An error occurred: {e}")
