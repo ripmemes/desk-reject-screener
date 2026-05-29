@@ -41,7 +41,7 @@ def categorize_rejection(comments):
         return "Anonymity Violation"
     elif "scope" in comments_lower or "track" in comments_lower:
         return "Out of Scope"
-    elif "plagiar" in comments_lower or "overlap" in comments_lower or "reference" in comments_lower or "fake" in comments_lower:
+    elif "plagiar" in comments_lower or "overlap" in comments_lower or "reference" in comments_lower or "fake" in comments_lower or "hallucinat" in comments_lower or "citation" in comments_lower:
         return "Scientific Integrity"
     else:
         return "Other / Quality"
