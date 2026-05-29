@@ -1,8 +1,24 @@
 from dotenv import load_dotenv
 import os
+import sys
 
-# This automatically searches the root folder for a .env file
+# this code was partially generated with the assistance of GitHub Copilot and Google Gemini, and thoroughly reviewed by me
+
 load_dotenv() 
 
-# Now your API key is safely loaded into memory
 gemini_key = os.getenv("GEMINI_API_KEY")
+
+sys.path.append(os.path.join(os.path.dirname(__file__), 'components'))
+
+from components.ingestion import run_ingestion
+from components.preprocessing import build_dataset
+
+def main():
+
+    run_ingestion()
+
+    build_dataset()
+
+
+if __name__ == "__main__":
+    main()
