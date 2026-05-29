@@ -4,7 +4,7 @@ import fitz
 
 script_dir = os.path.dirname(__file__)
 
-# this code was partially generated with the assistance of GitHub Copilot and Google Gemini, and thoroughly reviewed by me
+# this code was partially generated with the assistance of GitHub Copilot and Google Gemini, and thoroughly reviewed and adjusted by me.
 
 DESK_REJECTS_FILE = os.path.join(script_dir,"..", "data","raw","desk-rejects","desk_rejects.json")
 ACCEPTED_PAPERS_FILE = os.path.join(script_dir,"..","data","raw","accepted", "accepted_papers.json")

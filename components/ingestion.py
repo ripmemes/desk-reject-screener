@@ -3,7 +3,7 @@ import os
 import openreview
 import json
 
-# this code was partially generated with the assistance of GitHub Copilot and Google Gemini, and thoroughly reviewed by me
+# this code was partially generated with the assistance of GitHub Copilot and Google Gemini, and thoroughly reviewed and adjusted by me.
 
 def parse_existing_data(path):
     if os.path.exists(path):
