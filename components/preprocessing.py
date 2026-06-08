@@ -75,7 +75,7 @@ def build_dataset():
                 "parsed_text": parsed_text
             })
 
-    for note_id, paper_data in accepted_papers.items():
+    for _, paper_data in accepted_papers.items():
         forum_id = paper_data.get('forum_id')
         pdf_path = os.path.join(script_dir, "..", "data", "raw", "accepted", f"{forum_id}.pdf")
         
