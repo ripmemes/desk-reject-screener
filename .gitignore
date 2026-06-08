@@ -16,3 +16,4 @@ backup/
 data/
 data/*
 components/__pycache__
+bucket_titles.md
