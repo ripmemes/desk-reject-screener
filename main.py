@@ -14,8 +14,8 @@ from components.ingestion import run_ingestion
 from components.preprocessing import build_dataset
 
 def main():
-
-    run_ingestion()
+    UNIQUE_FLAG = 0
+    run_ingestion(UNIQUE_FLAG)
 
     build_dataset()
 
