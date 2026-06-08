@@ -32,16 +32,18 @@ def json_dumps_custom(file,data):
     except Exception as e :
         print(f"An error occurred in json_dumps_custom: {e}")
 
-
-def run_ingestion():
+"""Runs the main ingestion component
+Args:
+    UNIQUE_FLAG : When set to 1, desk-rejects with unique reasons will be fetched
+"""
+def run_ingestion(UNIQUE_FLAG):
     script_dir = os.path.dirname(__file__)
-
     dotenv_path = os.path.join(script_dir, '..', '.env')
-
     load_dotenv(dotenv_path)
 
     username = os.getenv("OPEN_REVIEW_USERNAME")
     pw = os.getenv("OPEN_REVIEW_PASSWORD")
+    n = 50
 
     client = openreview.api.OpenReviewClient(
         baseurl='https://api2.openreview.net',
@@ -68,9 +70,9 @@ def run_ingestion():
 
         invitation_data = parse_existing_data(INVITATIONS_FILE)
         accepted_data = parse_existing_data(ACCEPTED_PAPERS_FILE)
-        unique_reasons = parse_existing_data(DESK_REJECTS_FILE)
-        for (index, invitation) in enumerate(invitations):
-            if len(unique_reasons) >= 10 and len(accepted_data) >= 10 :
+        desk_rej_data = parse_existing_data(DESK_REJECTS_FILE)
+        for (_, invitation) in enumerate(invitations):
+            if len(desk_rej_data) >= n and len(accepted_data) >= n :
                 break
 
 
@@ -90,10 +92,10 @@ def run_ingestion():
 
                 # for(_, desk_rej_note) in enumerate(desk_rejects):
                 for desk_rej_note in desk_rejects :
-                    if len(unique_reasons) >= 10 :
+                    if len(desk_rej_data) >= n :
                         break
                     comments = desk_rej_note.content.get('desk_reject_comments', {}).get('value', 'No Comments')
-                    reason_key = comments.split(':')[0].strip() if ':' in comments else comments.split('.')[0].strip()
+                    reason_key = comments.split(':')[0].strip() if ':' in comments else comments.split('.')[0].strip() if UNIQUE_FLAG else comments
                     obj ={
                         'id': desk_rej_note.id,
                         'title': desk_rej_note.content.get('title', {}).get('value', 'No Title'),
@@ -106,8 +108,14 @@ def run_ingestion():
                         'created_date': desk_rej_note.cdate,
                         'license': desk_rej_note.license
                     }
-                    if reason_key not in unique_reasons :
-                        unique_reasons[reason_key] = obj
+                    if UNIQUE_FLAG:
+                        if reason_key not in desk_rej_data :
+                            desk_rej_data[reason_key] = obj
+
+                            target_dir = os.path.join(script_dir, "..", "data", "raw", "desk-rejects")
+                            download_pdf(client, desk_rej_note,target_dir)
+                    else :
+                        desk_rej_data[reason_key] = obj
 
                         target_dir = os.path.join(script_dir, "..", "data", "raw", "desk-rejects")
                         download_pdf(client, desk_rej_note,target_dir)
@@ -116,7 +124,7 @@ def run_ingestion():
                 new_id = invitation.id.replace('/-/Public_Comment', '/-/Decision')  
                 decision_notes = client.get_all_notes(invitation=new_id)
                 for decision_note in decision_notes:
-                    if len(accepted_data) >= 10 :
+                    if len(accepted_data) >= n :
                         break
                     if "accept" in decision_note.content['decision']['value'].lower():
                         obj = {
@@ -138,7 +146,7 @@ def run_ingestion():
 
 
         json_dumps_custom(INVITATIONS_FILE,invitation_data)
-        json_dumps_custom(DESK_REJECTS_FILE,unique_reasons)
+        json_dumps_custom(DESK_REJECTS_FILE,desk_rej_data)
         json_dumps_custom(ACCEPTED_PAPERS_FILE,accepted_data)
         print("Ingestion complete. Desk rejects and accepted papers data have been saved.\n")
 
@@ -146,4 +154,4 @@ def run_ingestion():
         print(f"An error occurred: {e}")
 
 if __name__ == "__main__":
-    run_ingestion()
+    run_ingestion(UNIQUE_FLAG=0)
