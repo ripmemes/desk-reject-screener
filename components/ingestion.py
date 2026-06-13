@@ -15,15 +15,15 @@ def parse_existing_data(path):
     else:
         return {}
     
-def download_pdf(client,note,target_dir):
+def download_pdf(client,note_forum, note_id ,target_dir : str):
     try :
-        f = client.get_pdf(id=note.forum)
-        file_path = f"{target_dir}/{note.forum}.pdf"
+        f = client.get_pdf(id=note_forum)
+        file_path = f"{target_dir}/{note_forum}.pdf"
         os.makedirs(target_dir, exist_ok=True)
         with open(file_path,'wb') as op:
             op.write(f)
     except Exception as e:
-        print(f"Failed to download paper {note.id}: {e}")
+        print(f"Failed to download paper {note_id}: {e}")
 
 def json_dumps_custom(file,data):
     try :
@@ -43,7 +43,7 @@ def run_ingestion(UNIQUE_FLAG):
 
     username = os.getenv("OPEN_REVIEW_USERNAME")
     pw = os.getenv("OPEN_REVIEW_PASSWORD")
-    n = 50
+    n = 5
 
     client = openreview.api.OpenReviewClient(
         baseurl='https://api2.openreview.net',
@@ -52,13 +52,13 @@ def run_ingestion(UNIQUE_FLAG):
     )
 
     try:
-        ALL_VENUES_FILE = "venues.json"
+        # ALL_VENUES_FILE = "venues.json"
         INVITATIONS_FILE = "invitations.json"
         DESK_REJECTS_FILE = os.path.join(script_dir,"..", "data","raw","desk-rejects","desk_rejects.json")
         ACCEPTED_PAPERS_FILE = os.path.join(script_dir,"..","data","raw","accepted", "accepted_papers.json")
-        all_venues = openreview.tools.get_all_venues(client)
-        with open(ALL_VENUES_FILE, 'w', encoding='utf-8') as f:
-            json.dump(all_venues, f, ensure_ascii=False, indent=4)
+        # all_venues = openreview.tools.get_all_venues(client)
+        # with open(ALL_VENUES_FILE, 'w', encoding='utf-8') as f:
+        #     json.dump(all_venues, f, ensure_ascii=False, indent=4)
 
 
         venue_id = 'ICLR.cc/2026/Conference'
@@ -67,15 +67,19 @@ def run_ingestion(UNIQUE_FLAG):
             prefix=venue_id,
             type='note'
         )
+        # with open(INVITATIONS_FILE, 'w', encoding='utf-8') as f:
+        #     dat = {'invitations': [invitation.id for invitation in invitations]}
+        #     json.dump(dat, f, ensure_ascii=False, indent=4)
 
         invitation_data = parse_existing_data(INVITATIONS_FILE)
         accepted_data = parse_existing_data(ACCEPTED_PAPERS_FILE)
         desk_rej_data = parse_existing_data(DESK_REJECTS_FILE)
+        
         for (_, invitation) in enumerate(invitations):
             if len(desk_rej_data) >= n and len(accepted_data) >= n :
                 break
 
-
+            
             invitation_data[invitation.id] = {
                 'id': invitation.id,
                 'content': invitation.content,
@@ -113,20 +117,29 @@ def run_ingestion(UNIQUE_FLAG):
                             desk_rej_data[reason_key] = obj
 
                             target_dir = os.path.join(script_dir, "..", "data", "raw", "desk-rejects")
-                            download_pdf(client, desk_rej_note,target_dir)
+                            download_pdf(client, desk_rej_note.forum,desk_rej_note.id, target_dir)
                     else :
-                        desk_rej_data[reason_key] = obj
+                        desk_rej_data[reason_key +" ( id: " +desk_rej_note.id + " )"] = obj
 
                         target_dir = os.path.join(script_dir, "..", "data", "raw", "desk-rejects")
-                        download_pdf(client, desk_rej_note,target_dir)
+                        download_pdf(client, desk_rej_note.forum,desk_rej_note.id, target_dir)
 
             elif invitation.id.endswith('/-/Public_Comment'):
                 new_id = invitation.id.replace('/-/Public_Comment', '/-/Decision')  
                 decision_notes = client.get_all_notes(invitation=new_id)
                 for decision_note in decision_notes:
+                    
+                    
                     if len(accepted_data) >= n :
                         break
+
+                    
                     if "accept" in decision_note.content['decision']['value'].lower():
+                        # submission_note = client.get_note(id=decision_note.forum)
+                        # print(submission_note)
+                        # download_pdf(client)
+                        # return
+                        
                         obj = {
                             'id': decision_note.id,
                             'title': decision_note.content.get('title', {}).get('value', 'No Title'),
@@ -142,7 +155,7 @@ def run_ingestion(UNIQUE_FLAG):
                         }
                         accepted_data[decision_note.id] = obj
                         target_dir = os.path.join(script_dir, "..", "data", "raw", "accepted")
-                        download_pdf(client,decision_note,target_dir)
+                        download_pdf(client,decision_note.forum, decision_note.id, target_dir)
 
 
         json_dumps_custom(INVITATIONS_FILE,invitation_data)
