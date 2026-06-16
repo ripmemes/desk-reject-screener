@@ -227,10 +227,7 @@ class ScreeningLLMClient:
 
 
     def evaluate_paper(self, paper_forum_id: str) -> dict:
-        """
-        Pipes the raw text to the LLM alongside the loaded anchor data, 
-        forcing a strict JSON response structure.
-        """
+       
         anchor_context = self._build_anchor_instruction_string()
         print("Successfully built the anchor instruction string...")
 
@@ -322,8 +319,10 @@ if __name__ == "__main__":
         evaluator = ScreeningLLMClient(model_name=gemini_flash)
 
         script_dir = os.path.dirname(os.path.abspath(__file__))
+
         dataset_path = os.path.join(script_dir, "..", "data", "processed", "labeled_dataset.json")
-        evaluator.load_anchors(labels_json_path=dataset_path)
+        manual_dataset_path = os.path.join(script_dir,"..","data","manually_labeled_dataset.json")
+        evaluator.load_anchors(labels_json_path=manual_dataset_path)
         
 
         print(evaluator.evaluate_paper('DRWSVEmGt1'))
