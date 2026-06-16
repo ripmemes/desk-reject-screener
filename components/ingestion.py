@@ -43,7 +43,7 @@ def run_ingestion(UNIQUE_FLAG):
 
     username = os.getenv("OPEN_REVIEW_USERNAME")
     pw = os.getenv("OPEN_REVIEW_PASSWORD")
-    n = 5
+    n = 30
 
     client = openreview.api.OpenReviewClient(
         baseurl='https://api2.openreview.net',
