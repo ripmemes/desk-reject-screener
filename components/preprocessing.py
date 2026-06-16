@@ -18,8 +18,7 @@ os.makedirs(PROCESSED_DATA_DIR, exist_ok=True)
 # Page count is only used for testing purposes, in the actual implementation page count is verified by the LLM.
 def extract_pdf_data(pdf_path):
     if not os.path.exists(pdf_path):
-        return None, 0
-    
+        raise ValueError('Error : File Path doesn\'t exist!')
     try:
         doc = fitz.open(pdf_path)
         page_count = doc.page_count
