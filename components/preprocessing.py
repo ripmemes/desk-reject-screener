@@ -15,6 +15,7 @@ OUTPUT_DATASET = os.path.join(PROCESSED_DATA_DIR, "labeled_dataset.json")
 os.makedirs(PROCESSED_DATA_DIR, exist_ok=True)
 
 # A function to extract text and page count from a PDF file using PyMuPDF (fitz).
+# Page count is only used for testing purposes, in the actual implementation page count is verified by the LLM.
 def extract_pdf_data(pdf_path):
     if not os.path.exists(pdf_path):
         return None, 0
