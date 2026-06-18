@@ -34,6 +34,13 @@ class LayoutCheck(EvaluationStep):
             response = client.chat.completions.create(
                 model=model_name, messages=messages, response_format={"type": "json_object"}, temperature=0.0
             )
-            return json.loads(response.choices[0].message.content)
+            result = json.loads(response.choices[0].message.content)
+        
+            if response.usage:
+                result["usage"] = {
+                    "input_tokens": response.usage.prompt_tokens,
+                    "output_tokens": response.usage.completion_tokens
+                }
+            return result
         except Exception as e:
-            return {"is_desk_reject": 0, "rejection_category": None, "detailed_justification": f"Step 2 API execution error: {e}"}
+            return {"is_desk_reject": 0, "rejection_category": None, "detailed_justification": f"Step 2 API execution error: {e}", "usage": {"input_tokens": 0, "output_tokens": 0}}
