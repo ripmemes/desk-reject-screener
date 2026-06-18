@@ -88,7 +88,7 @@ class ScreeningLLMClient:
         print("Successfully built the anchor instruction string...")
 
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        target_dir = os.path.join(script_dir,"..","data", "to_evaluate", "rejected")
+        target_dir = os.path.join(script_dir,"..","data", "to_evaluate", "accepted")
         file_path =  os.path.join(target_dir,f"{paper_forum_id}.pdf")
         
         is_desk_reject = 0
@@ -98,17 +98,25 @@ class ScreeningLLMClient:
         
         for step in self.pipeline:
             step_name = step.__class__.__name__
-            print(f"[Executing Pipeline Strategy: {step_name}]")
+            print(f"[Executing Pipeline Step: {step_name}]")
             
             # Fire self-contained query execution context
             verdict = step.run(file_path, self.client, self.model_name, anchor_context)
+
+            if "usage" in verdict:
+                self.total_input_tokens += verdict["usage"].get("input_tokens", 0)
+                self.total_output_tokens += verdict["usage"].get("output_tokens", 0)
             
             if verdict.get("is_desk_reject") == 1:
                 is_desk_reject = 1
                 if verdict.get("rejection_category"):
                     rejection_categories.append(verdict.get("rejection_category"))
+
+            justification = verdict.get('detailed_justification')
+            if not justification or justification.lower().strip() in ["none", "null", "none."]:
+                justification = "Compliant. No violations detected."
                     
-            detailed_justifications.append(f"[{step_name}]: {verdict.get('detailed_justification')}")
+            detailed_justifications.append(f"[{step_name}]: {justification}")
             
             if "detected_external_links" in verdict:
                 detected_external_links.extend(verdict.get("detected_external_links", []))
@@ -142,7 +150,7 @@ if __name__ == "__main__":
         evaluator.load_anchors(labels_json_path=manual_dataset_path)
         
 
-        print(evaluator.evaluate_paper('jHzWNnVQWU'))
+        print(evaluator.evaluate_paper('ASwAmbKJHr'))
         evaluator.print_usage_report()
 
     except ValueError as err:
