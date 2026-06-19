@@ -2,10 +2,12 @@ import os
 import json
 from openai import OpenAI
 from dotenv import load_dotenv
-from prompts import *
+from config.prompts import *
 from evaluators.page_limit import VisualBoundaryCheck
 from evaluators.layout import LayoutCheck
 from evaluators.text import TextualCheck
+from evaluators.base import EvaluationStep
+from config.paths import ProjectPaths
 
 # this code was partially generated with the assistance of GitHub Copilot and Google Gemini, and thoroughly reviewed and adjusted by me.
 
@@ -14,9 +16,8 @@ class ScreeningLLMClient:
 
     def __init__(self, model_name: str = "deepseek/deepseek-v4-flash"):
         
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        dotenv_path = os.path.join(script_dir, '..', '.env')
-        load_dotenv(dotenv_path)
+        self.paths = ProjectPaths() 
+        load_dotenv(self.paths.dotenv_path)
 
         api_key = os.getenv("API_KEY")
         if not api_key:
@@ -77,6 +78,16 @@ class ScreeningLLMClient:
             back_matter = raw_text[ref_index:ref_index + 3000] if ref_index != -1 else raw_text[-3000:]
             
             anchor_str += f"[START OF PAPER FRAGMENT]\n{front_matter}\n[... TRUNCATED BODY ...]\n{back_matter}\n[END OF PAPER FRAGMENT]\n"
+            
+            # Dynamically append the base64 image string directly into the text block
+            anchor_pdf_path = data.get('pdf_path')
+            if anchor_pdf_path and os.path.exists(anchor_pdf_path):
+                try:
+                    b64_img = EvaluationStep.get_page_as_base64_image(anchor_pdf_path, page_num=9)
+                    anchor_str += f"[VISUAL ANCHOR PAGE 9 DATA URI]: data:image/png;base64,{b64_img}\n"
+                except Exception as e:
+                    print(f"Skipping visual rendering for anchor {id}: {e}")
+                    
             anchor_str += "=========================================\n\n"
         
         return anchor_str
@@ -87,9 +98,7 @@ class ScreeningLLMClient:
         anchor_context = self._build_anchor_instruction_string()
         print("Successfully built the anchor instruction string...")
 
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        target_dir = os.path.join(script_dir,"..","data", "to_evaluate", "accepted")
-        file_path =  os.path.join(target_dir,f"{paper_forum_id}.pdf")
+        file_path = self.paths.get_evaluation_pdf_path(paper_forum_id, status_folder="accepted")
         
         is_desk_reject = 0
         rejection_categories = []
@@ -100,7 +109,7 @@ class ScreeningLLMClient:
             step_name = step.__class__.__name__
             print(f"[Executing Pipeline Step: {step_name}]")
             
-            # Fire self-contained query execution context
+            # Execute the evaluation step in the pipeline
             verdict = step.run(file_path, self.client, self.model_name, anchor_context)
 
             if "usage" in verdict:
@@ -143,14 +152,10 @@ if __name__ == "__main__":
     try:
         evaluator = ScreeningLLMClient(model_name=gemini_flash)
 
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-
-        dataset_path = os.path.join(script_dir, "..", "data", "processed", "labeled_dataset.json")
-        manual_dataset_path = os.path.join(script_dir,"..","data","manually_labeled_dataset.json")
-        evaluator.load_anchors(labels_json_path=manual_dataset_path)
+        evaluator.load_anchors(labels_json_path=evaluator.paths.dataset_json)
         
 
-        print(evaluator.evaluate_paper('ASwAmbKJHr'))
+        print(evaluator.evaluate_paper('7cEMkTu7Lf'))
         evaluator.print_usage_report()
 
     except ValueError as err:

@@ -52,13 +52,9 @@ def run_ingestion(UNIQUE_FLAG):
     )
 
     try:
-        # ALL_VENUES_FILE = "venues.json"
         INVITATIONS_FILE = "invitations.json"
         DESK_REJECTS_FILE = os.path.join(script_dir,"..", "data","raw","desk-rejects","desk_rejects.json")
         ACCEPTED_PAPERS_FILE = os.path.join(script_dir,"..","data","raw","accepted", "accepted_papers.json")
-        # all_venues = openreview.tools.get_all_venues(client)
-        # with open(ALL_VENUES_FILE, 'w', encoding='utf-8') as f:
-        #     json.dump(all_venues, f, ensure_ascii=False, indent=4)
 
 
         venue_id = 'ICLR.cc/2026/Conference'
@@ -133,12 +129,11 @@ def run_ingestion(UNIQUE_FLAG):
                     if len(accepted_data) >= n :
                         break
 
-                    
-                    if "accept" in decision_note.content['decision']['value'].lower():
-                        # submission_note = client.get_note(id=decision_note.forum)
-                        # print(submission_note)
-                        # download_pdf(client)
-                        # return
+                    # print(decision_note.content['decision']['value'].lower())
+                    # if "accept" in decision_note.content['decision']['value'].lower():
+                    # Since it's quite complicated to fetch the initial versions of accepted paper, which is what we want to feed the llm
+                    # It's decided that instead papers that have passed the desk-rejection step but were later rejected would be used as accepted papers.
+                    if "reject" in decision_note.content['decision']['value'].lower():
                         
                         obj = {
                             'id': decision_note.id,

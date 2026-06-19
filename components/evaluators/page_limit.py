@@ -1,6 +1,6 @@
 import json
 from evaluators.base import EvaluationStep
-from prompts import STEP_PROMPTS
+from config.prompts import STEP_PROMPTS
 
 class VisualBoundaryCheck(EvaluationStep):
     def run(self, pdf_path: str, client, model_name: str, anchor_context: str) -> dict:

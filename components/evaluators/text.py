@@ -1,6 +1,6 @@
 import json
 from evaluators.base import EvaluationStep
-from prompts import STEP_PROMPTS
+from config.prompts import STEP_PROMPTS
 from preprocessing import extract_pdf_data
 
 class TextualCheck(EvaluationStep):

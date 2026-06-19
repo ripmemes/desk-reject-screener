@@ -35,16 +35,22 @@ def extract_pdf_data(pdf_path):
 # A simple heuristic to group raw comments into standardized categories.
 def categorize_rejection(comments):
     comments_lower = comments.lower()
-    if "page" in comments_lower or "length" in comments_lower or "limit" in comments_lower or "format" in comments_lower or "margin" in comments_lower:
-        return "Formatting/Length"
-    elif "blind" in comments_lower or "anonym" in comments_lower or "author" in comments_lower or "identif" in comments_lower:
-        return "Anonymity Violation"
-    elif "scope" in comments_lower or "track" in comments_lower:
-        return "Out of Scope"
-    elif "plagiar" in comments_lower or "overlap" in comments_lower or "reference" in comments_lower or "fake" in comments_lower or "hallucinat" in comments_lower or "citation" in comments_lower:
+    if "prompt injection" in comments_lower or "injection" in comments_lower or "hijack" in comments_lower or "adversarial text" in comments_lower:
         return "Scientific Integrity"
+    elif "hallucinat" in comments_lower or "fake citation" in comments_lower or "fabricated" in comments_lower or "malicious citation" in comments_lower:
+        return "Hallucinated / Malicious Citations"
+    elif "bibliography" in comments_lower or "malformed" in comments_lower or "broken bib" in comments_lower or "corrupted citation" in comments_lower or "missing volume" in comments_lower:
+        return "Malformed / Broken Bibliography"
+    elif "blind" in comments_lower or "anonym" in comments_lower or "author name" in comments_lower or "identity" in comments_lower or "identif" in comments_lower:
+        return "Anonymity Violation"
+    elif "page limit" in comments_lower or "exceeded" in comments_lower or "over-length" in comments_lower or "too long" in comments_lower:
+        return "Length"
+    elif "margin" in comments_lower or "layout" in comments_lower or "asymmetric" in comments_lower or "spacing" in comments_lower or "font" in comments_lower:
+        return "Formatting"
+    elif "template" in comments_lower or "incompat" in comments_lower or "wrong format" in comments_lower or "iclr style" in comments_lower:
+        return "Incompatibility with ICLR/Venue Template"
     else:
-        return "Other / Quality"
+        return "Unclassified/Other"
 
 def load_json(filepath):
     if os.path.exists(filepath):

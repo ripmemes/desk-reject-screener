@@ -1,0 +1,35 @@
+import os
+from pathlib import Path
+
+class ProjectPaths:
+    def __init__(self):
+        # Dynamically find the project root folder (two levels up from this file)
+        self.root = Path(__file__).resolve().parent.parent.parent
+        
+        # Core directory paths
+        self.data_dir = self.root / "data"
+        self.raw_data_dir = self.data_dir / "raw"
+        self.processed_data_dir = self.data_dir / "processed"
+        
+        # Evaluator targets
+        self.to_evaluate_dir = self.data_dir / "to_evaluate"
+        
+    @property
+    def dotenv_path(self) -> str:
+        return str(self.root / ".env")
+    
+    @property
+    def dataset_json(self) -> str:
+        return str(self.data_dir / "processed" / "labeled_dataset.json")
+
+    @property
+    def manual_dataset_json(self) -> str:
+        return str(self.data_dir / "manually_labeled_dataset.json")
+
+    @property
+    def processed_dataset_json(self) -> str:
+        return str(self.processed_data_dir / "labeled_dataset.json")
+
+    def get_evaluation_pdf_path(self, paper_forum_id: str, status_folder: str = "rejected") -> str:
+        """Returns the absolute string path for a specific target evaluation PDF."""
+        return str(self.to_evaluate_dir / status_folder / f"{paper_forum_id}.pdf")
