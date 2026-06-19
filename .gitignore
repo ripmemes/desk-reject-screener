@@ -19,3 +19,4 @@ data/*
 components/__pycache__
 bucket_titles.md
 dataset_generator.py
+bucket_names.md
