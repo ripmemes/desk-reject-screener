@@ -55,50 +55,70 @@ class ScreeningLLMClient:
             print("Anchors loaded succesfully...")
         
 
-    def _build_anchor_instruction_string(self) -> str:
+    def _compile_anchor_data(self) -> dict:
         if not self.anchor_data:
-            return "No examples provided for this run."
+            return {"text_context": "No examples provided.", "visual_anchors": {}}
             
-        anchor_str = "Use these verified historical benchmarks. Verdicts: 0=Accepted, 1=Desk Reject:\n\n"
+        anchor_text = "Use these verified historical benchmarks. Verdicts: 0=Accepted, 1=Desk Reject:\n\n"
+        visual_anchors = {}
         
-        for id, data in list(self.anchor_data.items())[:3]: 
-            anchor_str += f"=== ANCHOR CASE: {id} (VERDICT: {data['is_desk_reject']}) ===\n"
-            anchor_str += f"REASON: {data['rejection_category']}\n"
+        selected_rejects = {}
+        selected_accepted = []
+        
+        for id, data in self.anchor_data.items():
+            if data.get('is_desk_reject') == 1:
+                category = data.get('rejection_category')
+                if category not in selected_rejects:
+                    selected_rejects[category] = (id, data)
+            else:
+                selected_accepted.append((id, data))
+        
+        # To prevent attention dilution, we feed as many accepted papers as we're going to do desk rejects
+        target_sample_size = len(selected_rejects)
+        final_anchors = list(selected_rejects.values()) + selected_accepted[:target_sample_size] 
+        
+        for id, data in final_anchors: 
+            anchor_text += f"=== ANCHOR CASE: {id} (VERDICT: {data['is_desk_reject']}) ===\n"
+            anchor_text += f"REASON: {data['rejection_category']}\n"
             
             raw_text = data.get('parsed_text', '')
-
-            if 'raw_comments' in data and data['raw_comments'] != "None":
-                anchor_str += f"SPECIFIC VIOLATION FOUND: {data['raw_comments']}\n"
+            if 'raw_comments' in data and data['raw_comments'] != "None": # rejected might have None in raw_comments so we check that
+                anchor_text += f"SPECIFIC VIOLATION FOUND: {data['raw_comments']}\n"
             
-            # Extract the structural fragments
-            front_matter = raw_text[:2000] # First ~500 words for anonymity checking
-            
-            # Find references to check page-limit behavior
+            front_matter = raw_text[:2000]
             ref_index = raw_text.lower().rfind("references")
             back_matter = raw_text[ref_index:ref_index + 3000] if ref_index != -1 else raw_text[-3000:]
             
-            anchor_str += f"[START OF PAPER FRAGMENT]\n{front_matter}\n[... TRUNCATED BODY ...]\n{back_matter}\n[END OF PAPER FRAGMENT]\n"
-            
-            # Dynamically append the base64 image string directly into the text block
+            anchor_text += f"[START OF PAPER FRAGMENT]\n{front_matter}\n[... TRUNCATED BODY ...]\n{back_matter}\n[END OF PAPER FRAGMENT]\n"
+            anchor_text += "=========================================\n\n"
+
             anchor_pdf_path = data.get('pdf_path')
+            if not anchor_pdf_path:
+                forum_id = data.get('forum_id')
+                status_folder = "desk-rejects" if data['is_desk_reject'] == 1 else "accepted"
+                anchor_pdf_path = os.path.join(self.paths.root, "data", "raw", status_folder, f"{forum_id}.pdf")
+
             if anchor_pdf_path and os.path.exists(anchor_pdf_path):
                 try:
-                    b64_img = EvaluationStep.get_page_as_base64_image(anchor_pdf_path, page_num=9)
-                    anchor_str += f"[VISUAL ANCHOR PAGE 9 DATA URI]: data:image/png;base64,{b64_img}\n"
+                    visual_anchors[id] = {
+                        "page_9": EvaluationStep.get_page_as_base64_image(anchor_pdf_path, page_num=9),
+                        "page_10": EvaluationStep.get_page_as_base64_image(anchor_pdf_path, page_num=10),
+                        "is_desk_reject": data['is_desk_reject']
+                    }
                 except Exception as e:
                     print(f"Skipping visual rendering for anchor {id}: {e}")
-                    
-            anchor_str += "=========================================\n\n"
         
-        return anchor_str
+        return {
+            "text_context": anchor_text,
+            "visual_anchors": visual_anchors
+        }
 
 
     def evaluate_paper(self, paper_forum_id: str) -> dict:
-       
-        anchor_context = self._build_anchor_instruction_string()
-        print("Successfully built the anchor instruction string...")
+        anchor_data_dict = self._compile_anchor_data()
+        print("Successfully built the anchor data...")
 
-        file_path = self.paths.get_evaluation_pdf_path(paper_forum_id, status_folder="accepted")
+        file_path = self.paths.get_evaluation_pdf_path(paper_forum_id, status_folder="rejected")
         
         is_desk_reject = 0
         rejection_categories = []
@@ -110,7 +130,7 @@ class ScreeningLLMClient:
             print(f"[Executing Pipeline Step: {step_name}]")
             
             # Execute the evaluation step in the pipeline
-            verdict = step.run(file_path, self.client, self.model_name, anchor_context)
+            verdict = step.run(file_path, self.client, self.model_name, anchor_data_dict)
 
             if "usage" in verdict:
                 self.total_input_tokens += verdict["usage"].get("input_tokens", 0)
@@ -148,14 +168,14 @@ class ScreeningLLMClient:
 if __name__ == "__main__":
     print("Testing the anchor-driven screening class...")
     deepseek = "deepseek/deepseek-v4-flash"
-    gemini_flash = "google/gemini-2.5-flash"
+    gemini_flash_2_5 = "google/gemini-2.5-flash"
     try:
-        evaluator = ScreeningLLMClient(model_name=gemini_flash)
+        evaluator = ScreeningLLMClient(model_name=gemini_flash_2_5)
 
         evaluator.load_anchors(labels_json_path=evaluator.paths.dataset_json)
         
 
-        print(evaluator.evaluate_paper('7cEMkTu7Lf'))
+        print(evaluator.evaluate_paper('FtXnVaiaiE'))
         evaluator.print_usage_report()
 
     except ValueError as err:
