@@ -21,3 +21,4 @@ bucket_titles.md
 dataset_generator.py
 bucket_names.md
 components/config/__pycache__
+*.txt
