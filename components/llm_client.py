@@ -169,8 +169,11 @@ if __name__ == "__main__":
     print("Testing the anchor-driven screening class...")
     deepseek = "deepseek/deepseek-v4-flash"
     gemini_flash_2_5 = "google/gemini-2.5-flash"
+    gemini_flash_3_5 = "google/gemini-3.5-flash"
+    gpt_mini  = "openai/gpt-4o-mini"
+
     try:
-        evaluator = ScreeningLLMClient(model_name=gemini_flash_2_5)
+        evaluator = ScreeningLLMClient(model_name=gemini_flash_3_5)
 
         evaluator.load_anchors(labels_json_path=evaluator.paths.dataset_json)
         
