@@ -1,46 +1,62 @@
+import os
 import json
 from evaluators.base import EvaluationStep
-from config.prompts import STEP_PROMPTS
+from config.prompts import STEP_PROMPTS, SYSTEM_PROMPTS
 
 class LayoutCheck(EvaluationStep):
-    def run(self, pdf_path: str, client, model_name: str, anchor_context: str) -> dict:
-        try:
-            random_page_img = self.get_page_as_base64_image(pdf_path, 4)    
-        except IndexError:
-            return {"is_desk_reject": 0, "rejection_category": None, "detailed_justification": "Page 4 does not exist to check layout constraints."}
-        except Exception as e:
-            return {"is_desk_reject": 0, "rejection_category": "ERROR", "detailed_justification": f"Step 2 internal error: {e}"}
+    def run(self, pdf_path: str, client, model_name: str, anchor_data_dict: dict) -> dict:
+        target_image_b64 = self.get_page_as_base64_image(pdf_path, page_num=10)
+        
+        text_context = anchor_data_dict.get("text_context", "")
+        visual_anchors = anchor_data_dict.get("visual_anchors", {})
 
-        system_prompt = (
-            "You are a strict automated sub-module checking for academic document layout and formatting consistency.\n"
-            "Evaluate the page canvas layout and return ONLY a valid JSON object matching this schema:\n\n"
-            "{\n"
-            "  \"is_desk_reject\": int (0 or 1),\n"
-            "  \"rejection_category\": \"Formatting\" or null,\n"
-            "  \"detailed_justification\": string\n"
-            "}\n\n"
-            f"{anchor_context}"
-        )
-
-        messages = [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": [
-                {"type": "text", "text": STEP_PROMPTS["step_2_layout_compliance"]},
-                {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{random_page_img}"}}
-            ]}
+        payload_content = [
+            {
+                "type": "text",
+                "text": f"{STEP_PROMPTS['step_2_layout_compliance']}\n\n[CONTEXT BENCHMARKS]:\n{text_context}"
+            }
         ]
+        
+        for anchor_id, data in visual_anchors.items():
+            if "page_10" in data:
+                verdict_label = "DESK REJECT VIOLATION" if data["is_desk_reject"] == 1 else "COMPLIANT"
+                payload_content.append({
+                    "type": "text",
+                    "text": f"=== VISUAL BENCHMARK FOR ANCHOR {anchor_id} ({verdict_label}) ==="
+                })
+                payload_content.append({
+                    "type": "image_url",
+                    "image_url": {"url": f"data:image/png;base64,{data['page_10']}"}
+                })
+
+        payload_content.append({
+            "type": "text",
+            "text": "=== TARGET PAPER TO EVALUATE ==="
+        })
+        payload_content.append({
+            "type": "image_url",
+            "image_url": {"url": f"data:image/png;base64,{target_image_b64}"}
+        })
 
         try:
             response = client.chat.completions.create(
-                model=model_name, messages=messages, response_format={"type": "json_object"}, temperature=0.0
+                model=model_name,
+                messages=[
+                    {"role": "system", "content": SYSTEM_PROMPTS['general_system']},
+                    {"role": "user", "content": payload_content}
+                ],
+                response_format={"type": "json_object"}
             )
+            
             result = json.loads(response.choices[0].message.content)
-        
-            if response.usage:
-                result["usage"] = {
-                    "input_tokens": response.usage.prompt_tokens,
-                    "output_tokens": response.usage.completion_tokens
-                }
+            result["usage"] = {
+                "input_tokens": response.usage.prompt_tokens,
+                "output_tokens": response.usage.completion_tokens
+            }
             return result
         except Exception as e:
-            return {"is_desk_reject": 0, "rejection_category": None, "detailed_justification": f"Step 2 API execution error: {e}", "usage": {"input_tokens": 0, "output_tokens": 0}}
+            return {
+                "is_desk_reject": 0,
+                "rejection_category": None,
+                "detailed_justification": f"LayoutCheck pipeline execution failed: {e}"
+            }

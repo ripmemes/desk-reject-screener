@@ -1,51 +1,61 @@
+import os
 import json
 from evaluators.base import EvaluationStep
-from config.prompts import STEP_PROMPTS
+from config.prompts import STEP_PROMPTS, SYSTEM_PROMPTS
 
 class VisualBoundaryCheck(EvaluationStep):
-    def run(self, pdf_path: str, client, model_name: str, anchor_context: str) -> dict:
-        try:
-            page_9_img = self.get_page_as_base64_image(pdf_path, 9)
-            page_10_img = self.get_page_as_base64_image(pdf_path, 10)
-        except IndexError:
-            return {
-                "is_desk_reject": 0, 
-                "rejection_category": None, 
-                "detailed_justification": "Paper has fewer than 9 pages. Main body spillover checks skipped."
+    def run(self, pdf_path: str, client, model_name: str, anchor_data_dict: dict) -> dict:
+        target_image_b64 = self.get_page_as_base64_image(pdf_path, page_num=9)
+        
+        text_context = anchor_data_dict.get("text_context", "")
+        visual_anchors = anchor_data_dict.get("visual_anchors", {})
+
+        payload_content = [
+            {
+                "type": "text",
+                "text": f"{STEP_PROMPTS['step_1_page_limit']}\n\n[CONTEXT BENCHMARKS]:\n{text_context}"
             }
-        except Exception as e:
-            return {"is_desk_reject": 0, "rejection_category": "ERROR", "detailed_justification": f"Step 1 internal error: {e}"}
-
-        system_prompt = (
-            "You are a strict automated sub-module checking for academic paper page limit boundaries.\n"
-            "Evaluate the provided visual assets and return ONLY a valid JSON object matching this schema:\n\n"
-            "{\n"
-            "  \"is_desk_reject\": int (0 or 1),\n"
-            "  \"rejection_category\": \"Over-length\" or null,\n"
-            "  \"detailed_justification\": string\n"
-            "}\n\n"
-            f"{anchor_context}"
-        )
-
-        messages = [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": [
-                {"type": "text", "text": STEP_PROMPTS["step_1_visual_boundary"]},
-                {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{page_9_img}"}},
-                {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{page_10_img}"}}
-            ]}
         ]
+        
+        for anchor_id, data in visual_anchors.items():
+            if "page_9" in data:
+                verdict_label = "DESK REJECT VIOLATION" if data["is_desk_reject"] == 1 else "COMPLIANT"
+                payload_content.append({
+                    "type": "text",
+                    "text": f"=== VISUAL BENCHMARK FOR ANCHOR {anchor_id} ({verdict_label}) ==="
+                })
+                payload_content.append({
+                    "type": "image_url",
+                    "image_url": {"url": f"data:image/png;base64,{data['page_9']}"}
+                })
+
+        payload_content.append({
+            "type": "text",
+            "text": "=== TARGET PAPER TO EVALUATE ==="
+        })
+        payload_content.append({
+            "type": "image_url",
+            "image_url": {"url": f"data:image/png;base64,{target_image_b64}"}
+        })
 
         try:
             response = client.chat.completions.create(
-                model=model_name, messages=messages, response_format={"type": "json_object"}, temperature=0.0
+                model=model_name,
+                messages=[
+                    {"role": "system", "content": SYSTEM_PROMPTS['general_system']},
+                    {"role": "user", "content": payload_content}
+                ],
+                response_format={"type": "json_object"}
             )
             result = json.loads(response.choices[0].message.content)
-            if response.usage:
-                result["usage"] = {
-                    "input_tokens": response.usage.prompt_tokens,
-                    "output_tokens": response.usage.completion_tokens
-                }
+            result["usage"] = {
+                "input_tokens": response.usage.prompt_tokens,
+                "output_tokens": response.usage.completion_tokens
+            }
             return result
         except Exception as e:
-            return {"is_desk_reject": 0, "rejection_category": None, "detailed_justification": f"Step 1 API execution error: {e}","usage": {"input_tokens": 0, "output_tokens": 0}}
+            return {
+                "is_desk_reject": 0,
+                "rejection_category": None,
+                "detailed_justification": f"VisualBoundaryCheck pipeline execution failed: {e}"
+            }
