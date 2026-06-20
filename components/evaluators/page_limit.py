@@ -42,7 +42,7 @@ class VisualBoundaryCheck(EvaluationStep):
             response = client.chat.completions.create(
                 model=model_name,
                 messages=[
-                    {"role": "system", "content": SYSTEM_PROMPTS['general_system']},
+                    {"role": "system", "content": SYSTEM_PROMPTS['page_limit_system']},
                     {"role": "user", "content": payload_content}
                 ],
                 response_format={"type": "json_object"}

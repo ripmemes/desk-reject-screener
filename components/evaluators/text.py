@@ -27,7 +27,7 @@ class TextualCheck(EvaluationStep):
             response = client.chat.completions.create(
                 model=model_name,
                 messages=[
-                    {"role": "system", "content": SYSTEM_PROMPTS['general_system']},
+                    {"role": "system", "content": SYSTEM_PROMPTS['textual_integrity_system']},
                     {"role": "user", "content": payload_content}
                 ],
                 response_format={"type": "json_object"}
