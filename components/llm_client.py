@@ -53,72 +53,12 @@ class ScreeningLLMClient:
         with open(labels_json_path, 'r', encoding='utf-8') as f:
             self.anchor_data = json.load(f)
             print("Anchors loaded succesfully...")
-        
-
-    def _compile_anchor_data(self) -> dict:
-        if not self.anchor_data:
-            return {"text_context": "No examples provided.", "visual_anchors": {}}
-            
-        anchor_text = "Use these verified historical benchmarks. Verdicts: 0=Accepted, 1=Desk Reject:\n\n"
-        visual_anchors = {}
-        
-        selected_rejects = {}
-        selected_accepted = []
-        
-        for id, data in self.anchor_data.items():
-            if data.get('is_desk_reject') == 1:
-                category = data.get('rejection_category')
-                if category not in selected_rejects:
-                    selected_rejects[category] = (id, data)
-            else:
-                selected_accepted.append((id, data))
-        
-        # To prevent attention dilution, we feed as many accepted papers as we're going to do desk rejects
-        target_sample_size = len(selected_rejects)
-        final_anchors = list(selected_rejects.values()) + selected_accepted[:target_sample_size] 
-        
-        for id, data in final_anchors: 
-            anchor_text += f"=== ANCHOR CASE: {id} (VERDICT: {data['is_desk_reject']}) ===\n"
-            anchor_text += f"REASON: {data['rejection_category']}\n"
-            
-            raw_text = data.get('parsed_text', '')
-            if 'raw_comments' in data and data['raw_comments'] != "None": # rejected might have None in raw_comments so we check that
-                anchor_text += f"SPECIFIC VIOLATION FOUND: {data['raw_comments']}\n"
-            
-            front_matter = raw_text[:2000]
-            ref_index = raw_text.lower().rfind("references")
-            back_matter = raw_text[ref_index:ref_index + 3000] if ref_index != -1 else raw_text[-3000:]
-            
-            anchor_text += f"[START OF PAPER FRAGMENT]\n{front_matter}\n[... TRUNCATED BODY ...]\n{back_matter}\n[END OF PAPER FRAGMENT]\n"
-            anchor_text += "=========================================\n\n"
-
-            anchor_pdf_path = data.get('pdf_path')
-            if not anchor_pdf_path:
-                forum_id = data.get('forum_id')
-                status_folder = "desk-rejects" if data['is_desk_reject'] == 1 else "accepted"
-                anchor_pdf_path = os.path.join(self.paths.root, "data", "raw", status_folder, f"{forum_id}.pdf")
-
-            if anchor_pdf_path and os.path.exists(anchor_pdf_path):
-                try:
-                    visual_anchors[id] = {
-                        "page_9": EvaluationStep.get_page_as_base64_image(anchor_pdf_path, page_num=9),
-                        "page_10": EvaluationStep.get_page_as_base64_image(anchor_pdf_path, page_num=10),
-                        "is_desk_reject": data['is_desk_reject']
-                    }
-                except Exception as e:
-                    print(f"Skipping visual rendering for anchor {id}: {e}")
-        
-        return {
-            "text_context": anchor_text,
-            "visual_anchors": visual_anchors
-        }
-
 
     def evaluate_paper(self, paper_forum_id: str) -> dict:
-        anchor_data_dict = self._compile_anchor_data()
+
         print("Successfully built the anchor data...")
 
-        file_path = self.paths.get_evaluation_pdf_path(paper_forum_id, status_folder="rejected")
+        file_path = self.paths.get_evaluation_pdf_path(paper_forum_id, status_folder="accepted")
         
         is_desk_reject = 0
         rejection_categories = []
@@ -130,7 +70,7 @@ class ScreeningLLMClient:
             print(f"[Executing Pipeline Step: {step_name}]")
             
             # Execute the evaluation step in the pipeline
-            verdict = step.run(file_path, self.client, self.model_name, anchor_data_dict)
+            verdict = step.run(file_path, self.client, self.model_name, self.anchor_data)
 
             if "usage" in verdict:
                 self.total_input_tokens += verdict["usage"].get("input_tokens", 0)
@@ -178,7 +118,7 @@ if __name__ == "__main__":
         evaluator.load_anchors(labels_json_path=evaluator.paths.dataset_json)
         
 
-        print(evaluator.evaluate_paper('FtXnVaiaiE'))
+        print(evaluator.evaluate_paper('YwEh20x8ud'))
         evaluator.print_usage_report()
 
     except ValueError as err:
