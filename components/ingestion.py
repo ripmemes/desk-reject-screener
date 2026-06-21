@@ -90,7 +90,6 @@ def run_ingestion(UNIQUE_FLAG):
                 new_id = invitation.id.replace('/-/Desk_Rejection_Reversion', '/-/Desk_Rejection')  
                 desk_rejects = client.get_all_notes(invitation=new_id)
 
-                # for(_, desk_rej_note) in enumerate(desk_rejects):
                 for desk_rej_note in desk_rejects :
                     if len(desk_rej_data) >= n :
                         break
