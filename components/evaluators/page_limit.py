@@ -1,4 +1,3 @@
-import os
 import json
 from evaluators.base import EvaluationStep
 from config.prompts import STEP_PROMPTS, SYSTEM_PROMPTS
@@ -6,37 +5,55 @@ from config.prompts import STEP_PROMPTS, SYSTEM_PROMPTS
 class VisualBoundaryCheck(EvaluationStep):
     def run(self, pdf_path: str, client, model_name: str, anchor_data_dict: dict) -> dict:
         target_image_b64 = self.get_page_as_base64_image(pdf_path, page_num=9)
-        
-        text_context = anchor_data_dict.get("text_context", "")
-        visual_anchors = anchor_data_dict.get("visual_anchors", {})
+
+        step_anchors = self.prepare_step_anchors(
+            anchor_data=anchor_data_dict, 
+            target_categories=["Page Limit Exceeded"],
+            requires_visuals=True
+        )
 
         payload_content = [
             {
                 "type": "text",
-                "text": f"{STEP_PROMPTS['step_1_page_limit']}\n\n[CONTEXT BENCHMARKS]:\n{text_context}"
+                "text": f"{STEP_PROMPTS['step_1_page_limit']}\n\n[CONTEXT BENCHMARKS]:\n"
             }
         ]
-        
-        for anchor_id, data in visual_anchors.items():
-            if "page_9" in data:
-                verdict_label = "DESK REJECT VIOLATION" if data["is_desk_reject"] == 1 else "COMPLIANT"
+
+        accepted_papers = [data for id, data in step_anchors.items() if data['is_desk_reject'] == 0]
+        rejected_papers = [data for id, data in step_anchors.items() if data['is_desk_reject'] == 1]
+
+        for i, reject_data in enumerate(rejected_papers):
+            if i < len(accepted_papers):
                 payload_content.append({
                     "type": "text",
-                    "text": f"=== VISUAL BENCHMARK FOR ANCHOR {anchor_id} ({verdict_label}) ==="
+                    "text": "=== ANCHOR CASE (VERDICT: 0) ===\nSTATUS: COMPLIANT\n"
                 })
+                if "page_9" in accepted_papers[i]['visual_anchors']:
+                    payload_content.append({
+                        "type": "image_url",
+                        "image_url": {"url": f"data:image/png;base64,{accepted_papers[i]['visual_anchors']['page_9']}"}
+                    })
+            
+            payload_content.append({
+                "type": "text",
+                "text": f"=== ANCHOR CASE (VERDICT: 1) ===\nREASON: {reject_data['rejection_category']}\n"
+            })
+            if "page_9" in reject_data['visual_anchors']:
                 payload_content.append({
                     "type": "image_url",
-                    "image_url": {"url": f"data:image/png;base64,{data['page_9']}"}
+                    "image_url": {"url": f"data:image/png;base64,{reject_data['visual_anchors']['page_9']}"}
                 })
 
         payload_content.append({
             "type": "text",
             "text": "=== TARGET PAPER TO EVALUATE ==="
         })
-        payload_content.append({
-            "type": "image_url",
-            "image_url": {"url": f"data:image/png;base64,{target_image_b64}"}
-        })
+        
+        if target_image_b64:
+            payload_content.append({
+                "type": "image_url",
+                "image_url": {"url": f"data:image/png;base64,{target_image_b64}"}
+            })
 
         try:
             response = client.chat.completions.create(
