@@ -14,7 +14,7 @@ from config.paths import ProjectPaths
 class ScreeningLLMClient:
     # class to reuse the network connection + track token usage
 
-    def __init__(self, model_name: str = "deepseek/deepseek-v4-flash"):
+    def __init__(self, model_name: str = "google/gemini-3.5-flash"):
         
         self.paths = ProjectPaths() 
         load_dotenv(self.paths.dotenv_path)
@@ -54,11 +54,11 @@ class ScreeningLLMClient:
             self.anchor_data = json.load(f)
             print("Anchors loaded succesfully...")
 
-    def evaluate_paper(self, paper_forum_id: str) -> dict:
+    def evaluate_paper(self, paper_forum_id: str ,status_folder ="desk-rejects") -> dict:
 
         print("Successfully built the anchor data...")
 
-        file_path = self.paths.get_evaluation_pdf_path(paper_forum_id, status_folder="accepted")
+        file_path = self.paths.get_evaluation_pdf_path(paper_forum_id, status_folder)
         
         is_desk_reject = 0
         rejection_categories = []
@@ -115,10 +115,10 @@ if __name__ == "__main__":
     try:
         evaluator = ScreeningLLMClient(model_name=gemini_flash_3_5)
 
-        evaluator.load_anchors(labels_json_path=evaluator.paths.dataset_json)
+        evaluator.load_anchors(labels_json_path=evaluator.paths.manual_dataset_json)
         
 
-        print(evaluator.evaluate_paper('YwEh20x8ud'))
+        print(evaluator.evaluate_paper('DRWSVEmGt1'))
         evaluator.print_usage_report()
 
     except ValueError as err:
