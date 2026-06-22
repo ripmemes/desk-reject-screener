@@ -47,10 +47,9 @@ class EvaluationStep:
             visuals = {}
             if requires_visuals:
                 forum_id = data.get('forum_id')
-                status = "desk-rejects" if data.get('is_desk_reject') == 1 else "accepted"
 
                 paths = ProjectPaths()
-                anchor_pdf_path = paths.get_raw_pdf_path(forum_id, status)
+                anchor_pdf_path = paths.get_anchor_pdf_path(forum_id)
 
                 if anchor_pdf_path and os.path.exists(anchor_pdf_path):
                     try:
