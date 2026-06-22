@@ -25,11 +25,15 @@ class ProjectPaths:
 
     @property
     def manual_dataset_json(self) -> str:
-        return str(self.data_dir / "manually_labeled_dataset.json")
+        return str(self.data_dir / "anchors" / "manually_labeled_dataset.json")
 
     @property
     def processed_dataset_json(self) -> str:
         return str(self.processed_data_dir / "labeled_dataset.json")
+    
+    @property
+    def ground_truth_dataset(self) -> str:
+        return str(self.to_evaluate_dir / "ground_truth_dataset.json" )
 
     def get_evaluation_pdf_path(self, paper_forum_id: str, status_folder: str = "rejected") -> str:
         """Returns the absolute string path for a specific target evaluation PDF."""
@@ -38,3 +42,6 @@ class ProjectPaths:
     def get_raw_pdf_path(self, paper_forum_id: str, status_folder: str) -> str:
         """Returns the absolute string path for an anchor PDF in the raw data folder."""
         return str(self.raw_data_dir / status_folder / f"{paper_forum_id}.pdf")
+    
+    def get_anchor_pdf_path(self, paper_forum_id : str) :
+        return str(self.data_dir / "anchors"/ f"{paper_forum_id}.pdf")
