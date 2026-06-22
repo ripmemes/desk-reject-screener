@@ -24,3 +24,5 @@ ingestion2.py
 data/raw/*
 data/raw
 data/processed
+evaluators/__pycache__
+components/evaluators/__pycache__/
