@@ -26,3 +26,4 @@ data/raw
 data/processed
 evaluators/__pycache__
 components/evaluators/__pycache__/
+llm_client2.py
