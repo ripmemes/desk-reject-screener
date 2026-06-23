@@ -61,7 +61,7 @@ class ScreeningLLMClient:
         # file_path = self.paths.get_evaluation_pdf_path(paper_forum_id, status_folder)
         
         is_desk_reject = 0
-        rejection_categories = []
+        rejection_category = None
         detailed_justifications = []
         detected_external_links = []
         
@@ -70,7 +70,12 @@ class ScreeningLLMClient:
             print(f"[Executing Pipeline Step: {step_name}]")
             
             # Execute the evaluation step in the pipeline
-            verdict = step.run(file_path, self.client, self.model_name, self.anchor_data)
+            try:
+                verdict = step.run(file_path, self.client, self.model_name, self.anchor_data)
+            except ValueError as err : 
+                print(f"Error running Evaluation step {step_name} : {err} , skipping this step")
+                continue
+
 
             if "usage" in verdict:
                 self.total_input_tokens += verdict["usage"].get("input_tokens", 0)
@@ -79,7 +84,7 @@ class ScreeningLLMClient:
             if verdict.get("is_desk_reject") == 1:
                 is_desk_reject = 1
                 if verdict.get("rejection_category"):
-                    rejection_categories.append(verdict.get("rejection_category"))
+                    rejection_category = verdict.get("rejection_category")
 
             justification = verdict.get('detailed_justification')
             if not justification or justification.lower().strip() in ["none", "null", "none."]:
@@ -92,7 +97,7 @@ class ScreeningLLMClient:
 
         return {
             "is_desk_reject": is_desk_reject,
-            "rejection_category": ", ".join(rejection_categories) if rejection_categories else None,
+            "rejection_category": rejection_category,
             "detailed_justification": " | ".join(detailed_justifications),
             "detected_external_links": list(set(detected_external_links))
         }
