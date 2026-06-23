@@ -54,11 +54,11 @@ class ScreeningLLMClient:
             self.anchor_data = json.load(f)
             print("Anchors loaded succesfully...")
 
-    def evaluate_paper(self, paper_forum_id: str ,status_folder ="desk-rejects") -> dict:
+    def evaluate_paper(self ,file_path : str ) -> dict:
 
         print("Successfully built the anchor data...")
 
-        file_path = self.paths.get_evaluation_pdf_path(paper_forum_id, status_folder)
+        # file_path = self.paths.get_evaluation_pdf_path(paper_forum_id, status_folder)
         
         is_desk_reject = 0
         rejection_categories = []
@@ -116,9 +116,8 @@ if __name__ == "__main__":
         evaluator = ScreeningLLMClient(model_name=gemini_flash_3_5)
 
         evaluator.load_anchors(labels_json_path=evaluator.paths.manual_dataset_json)
-        
-
-        print(evaluator.evaluate_paper('DRWSVEmGt1'))
+        file_path = evaluator.paths.get_evaluation_pdf_path('DRWSVEmGt1', 'desk-rejects')
+        print(evaluator.evaluate_paper(file_path))
         evaluator.print_usage_report()
 
     except ValueError as err:
