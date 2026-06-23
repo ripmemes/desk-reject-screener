@@ -2,6 +2,7 @@ import json
 import urllib.request
 from llm_client import ScreeningLLMClient
 from config.paths import ProjectPaths
+from config.misc import *
 
 import os 
 
@@ -40,12 +41,13 @@ def calculate_metrics():
         forum_id = data.get("forum_id")
        
         status_folder = "desk-rejects" if ground_truth == 1 else "accepted"    
-        if not os.path.exists(paths.get_evaluation_pdf_path(forum_id,status_folder)) : 
+        file_path = paths.get_evaluation_pdf_path(forum_id,status_folder)
+        if not os.path.exists(file_path) or forum_id in INVALID_ACCEPTED_PAPERS : 
             continue
         print(f"\nEvaluating {forum_id}...")
         
         
-        result = client.evaluate_paper(forum_id, status_folder=status_folder)
+        result = client.evaluate_paper(file_path)
         prediction = result["is_desk_reject"]
         
         if ground_truth == 1 and prediction == 1:
