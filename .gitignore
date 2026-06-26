@@ -28,3 +28,6 @@ evaluators/__pycache__
 components/evaluators/__pycache__/
 llm_client2.py
 ground_truth_dataset(56 papers).json
+evaluation_errors.log
+evaluate2.py
+*.log
