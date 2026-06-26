@@ -4,7 +4,7 @@ import fitz
 
 script_dir = os.path.dirname(__file__)
 
-# this code was partially generated with the assistance of GitHub Copilot and Google Gemini, and thoroughly reviewed and adjusted by me.
+# this code was partially generated with the assistance of GitHub Copilot and Google Gemini, and thoroughly reviewed and adjusted by the author.
 
 DESK_REJECTS_FILE = os.path.join(script_dir,"..", "data","raw","desk-rejects","desk_rejects.json")
 ACCEPTED_PAPERS_FILE = os.path.join(script_dir,"..","data","raw","accepted", "accepted_papers.json")
@@ -37,14 +37,14 @@ def categorize_rejection(comments):
     comments_lower = comments.lower()
     if "prompt injection" in comments_lower or "injection" in comments_lower or "hijack" in comments_lower or "adversarial text" in comments_lower:
         return "Scientific Integrity"
-    elif "hallucinat" in comments_lower or "fake citation" in comments_lower or "fabricated" in comments_lower or "malicious citation" in comments_lower:
+    elif "hallucinat" in comments_lower or "fake citation" in comments_lower or "fabricated" in comments_lower or "malicious citation" in comments_lower or "do not refer" in comments_lower :
         return "Hallucinated / Malicious Citations"
     elif "bibliography" in comments_lower or "malformed" in comments_lower or "broken bib" in comments_lower or "corrupted citation" in comments_lower or "missing volume" in comments_lower:
         return "Malformed / Broken Bibliography"
     elif "blind" in comments_lower or "anonym" in comments_lower or "author name" in comments_lower or "identity" in comments_lower or "identif" in comments_lower:
         return "Anonymity Violation"
     elif "page limit" in comments_lower or "exceeded" in comments_lower or "over-length" in comments_lower or "too long" in comments_lower:
-        return "Length"
+        return "Over-Length"
     elif "margin" in comments_lower or "layout" in comments_lower or "asymmetric" in comments_lower or "spacing" in comments_lower or "font" in comments_lower:
         return "Formatting"
     elif "template" in comments_lower or "incompat" in comments_lower or "wrong format" in comments_lower or "iclr style" in comments_lower:

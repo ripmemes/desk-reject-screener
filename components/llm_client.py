@@ -9,7 +9,7 @@ from evaluators.text import TextualCheck
 from evaluators.base import EvaluationStep
 from config.paths import ProjectPaths
 
-# this code was partially generated with the assistance of GitHub Copilot and Google Gemini, and thoroughly reviewed and adjusted by me.
+# this code was partially generated with the assistance of GitHub Copilot and Google Gemini, and thoroughly reviewed and adjusted by the author.
 
 class ScreeningLLMClient:
     # class to reuse the network connection + track token usage
@@ -73,8 +73,14 @@ class ScreeningLLMClient:
             try:
                 verdict = step.run(file_path, self.client, self.model_name, self.anchor_data)
             except ValueError as err : 
-                print(f"Error running Evaluation step {step_name} : {err} , skipping this step")
-                continue
+                print(f"Error running Evaluation step {step_name} : {err} , cancelling evaluation")
+                return {
+                    "is_desk_reject": -1,
+                    "rejection_category": None,
+                    "detailed_justification": None,
+                    "detected_external_links": None
+                }
+                # continue
 
 
             if "usage" in verdict:
