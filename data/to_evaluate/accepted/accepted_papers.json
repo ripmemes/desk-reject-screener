@@ -1,1702 +1,1107 @@
 {
-    "eeGM9EhfI0": {
-        "id": "eeGM9EhfI0",
-        "title": "Paper Decision",
+    "FPLNSx1jmL": {
+        "id": "FPLNSx1jmL",
+        "title": "Improving Developer Emotion Classification via LLM-Based Augmentation",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "cg9nIA1HhH",
-        "submission_id": "cg9nIA1HhH",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "FPLNSx1jmL",
+        "submission_id": "FPLNSx1jmL",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25649/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353825169,
-        "created_date": 1769416870594,
+        "last_modified": 1770805203341,
+        "created_date": 1758370688811,
         "license": "CC BY 4.0"
     },
-    "386vaXLwwf": {
-        "id": "386vaXLwwf",
-        "title": "Paper Decision",
+    "GGg2BmcBEp": {
+        "id": "GGg2BmcBEp",
+        "title": "One-Shot Style Personalization for RL Agents via Latent Discriminator",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "QP7WX3XmEy",
-        "submission_id": "QP7WX3XmEy",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "GGg2BmcBEp",
+        "submission_id": "GGg2BmcBEp",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25633/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353825242,
-        "created_date": 1769416870200,
+        "last_modified": 1770805203276,
+        "created_date": 1758369647311,
         "license": "CC BY 4.0"
     },
-    "oOWkul2OMO": {
-        "id": "oOWkul2OMO",
-        "title": "Paper Decision",
+    "NWoHQbALl4": {
+        "id": "NWoHQbALl4",
+        "title": "Compositional HyperModules for Few-Shot Code Adaptation in Meta-Reinforcement Learning",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "REZ5cM8mFn",
-        "submission_id": "REZ5cM8mFn",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "NWoHQbALl4",
+        "submission_id": "NWoHQbALl4",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25628/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353825728,
-        "created_date": 1769416870641,
+        "last_modified": 1770805203244,
+        "created_date": 1758369591767,
         "license": "CC BY 4.0"
     },
-    "apck9cwqYz": {
-        "id": "apck9cwqYz",
-        "title": "Paper Decision",
+    "J0eNXpnrc7": {
+        "id": "J0eNXpnrc7",
+        "title": "All-in-One: Boosting Basic Capabilities in one Omni-MLLM to Enhance Movie Understanding",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "cqDxEvpnnY",
-        "submission_id": "cqDxEvpnnY",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "J0eNXpnrc7",
+        "submission_id": "J0eNXpnrc7",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25627/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353825907,
-        "created_date": 1769416871073,
+        "last_modified": 1770805203219,
+        "created_date": 1758369588390,
         "license": "CC BY 4.0"
     },
-    "jfWBXrrNq1": {
-        "id": "jfWBXrrNq1",
-        "title": "Paper Decision",
+    "0xHWd4CUaX": {
+        "id": "0xHWd4CUaX",
+        "title": "Contrastive Code Graph Embeddings for Reinforcement Learning-Based Automated Code Refactoring",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "s5FME7A0TY",
-        "submission_id": "s5FME7A0TY",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "0xHWd4CUaX",
+        "submission_id": "0xHWd4CUaX",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25618/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353825858,
-        "created_date": 1769416871352,
+        "last_modified": 1770805203192,
+        "created_date": 1758369519915,
         "license": "CC BY 4.0"
     },
-    "ACuG5jNdZs": {
-        "id": "ACuG5jNdZs",
-        "title": "Paper Decision",
+    "7wjqoJj62s": {
+        "id": "7wjqoJj62s",
+        "title": "Soft Non-Diagonality Penalty Enables Latent Space-Level Interpretability of pLM at No Performance Cost",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "RRrClX4YJY",
-        "submission_id": "RRrClX4YJY",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "7wjqoJj62s",
+        "submission_id": "7wjqoJj62s",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25613/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353826234,
-        "created_date": 1769416871646,
+        "last_modified": 1770805203138,
+        "created_date": 1758369484179,
         "license": "CC BY 4.0"
     },
-    "mWkS0k2Z0E": {
-        "id": "mWkS0k2Z0E",
-        "title": "Paper Decision",
+    "WtbIU6tDc3": {
+        "id": "WtbIU6tDc3",
+        "title": "Adaptive Mixing of Non-Invariant Information for Generalized Diffusion Policy",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "hg0lpcHdWk",
-        "submission_id": "hg0lpcHdWk",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "WtbIU6tDc3",
+        "submission_id": "WtbIU6tDc3",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25612/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353826605,
-        "created_date": 1769416871794,
+        "last_modified": 1770805203120,
+        "created_date": 1758369483548,
         "license": "CC BY 4.0"
     },
-    "BDdAA1rP01": {
-        "id": "BDdAA1rP01",
-        "title": "Paper Decision",
+    "kjVBqkLrJa": {
+        "id": "kjVBqkLrJa",
+        "title": "Style2Shape: Image Style Guided 3D Shape Material Generation",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "wywgRd1MUQ",
-        "submission_id": "wywgRd1MUQ",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "kjVBqkLrJa",
+        "submission_id": "kjVBqkLrJa",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25608/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353826787,
-        "created_date": 1769416871980,
+        "last_modified": 1770805203088,
+        "created_date": 1758369462497,
         "license": "CC BY 4.0"
     },
-    "ETq3NSDLfk": {
-        "id": "ETq3NSDLfk",
-        "title": "Paper Decision",
+    "9ITquDr1G1": {
+        "id": "9ITquDr1G1",
+        "title": "Contrastive-Aligned Knowledge Distillation for Collaborative Code Completion via Multi-Agent Reinforcement Learning",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "V9fU8Pw9qr",
-        "submission_id": "V9fU8Pw9qr",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "9ITquDr1G1",
+        "submission_id": "9ITquDr1G1",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25606/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353830203,
-        "created_date": 1769416872772,
+        "last_modified": 1770805203021,
+        "created_date": 1758369445645,
         "license": "CC BY 4.0"
     },
-    "GiDWcEm4Ch": {
-        "id": "GiDWcEm4Ch",
-        "title": "Paper Decision",
+    "TjF9WLcu8o": {
+        "id": "TjF9WLcu8o",
+        "title": "Contrastive-Online-Meta (COM): A Dynamic Adaptation Mechanism for Instruction-Tuned CodeLLMs",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "ZOaXR5CXGu",
-        "submission_id": "ZOaXR5CXGu",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "TjF9WLcu8o",
+        "submission_id": "TjF9WLcu8o",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25599/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353830020,
-        "created_date": 1769416873103,
+        "last_modified": 1770805202975,
+        "created_date": 1758369381874,
         "license": "CC BY 4.0"
     },
-    "jMNkaTpAMs": {
-        "id": "jMNkaTpAMs",
-        "title": "Paper Decision",
+    "5sEj8EL8J4": {
+        "id": "5sEj8EL8J4",
+        "title": "Cross-Modal Syntax-NL Attention for Multi-Agent Reinforcement Learning in Collaborative Coding",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "XOuHTBLrPP",
-        "submission_id": "XOuHTBLrPP",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "5sEj8EL8J4",
+        "submission_id": "5sEj8EL8J4",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25586/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353829932,
-        "created_date": 1769416873562,
+        "last_modified": 1770805202917,
+        "created_date": 1758369304944,
         "license": "CC BY 4.0"
     },
-    "VQvGtWjGw4": {
-        "id": "VQvGtWjGw4",
-        "title": "Paper Decision",
+    "lyxHZSCX6o": {
+        "id": "lyxHZSCX6o",
+        "title": "Curricular Adversarial Training for Robust Code Generation via Hierarchical Reinforcement Learning",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "kwnYSirdZx",
-        "submission_id": "kwnYSirdZx",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "lyxHZSCX6o",
+        "submission_id": "lyxHZSCX6o",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25575/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353830453,
-        "created_date": 1769416874144,
+        "last_modified": 1770805202724,
+        "created_date": 1758369228419,
         "license": "CC BY 4.0"
     },
-    "FE1866Jz16": {
-        "id": "FE1866Jz16",
-        "title": "Paper Decision",
+    "fOmX9aaQD3": {
+        "id": "fOmX9aaQD3",
+        "title": "Triple-S: A Sticker Semantic Similarity Benchmark with General Sticker Encoder",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "wKzj9Z1FJ1",
-        "submission_id": "wKzj9Z1FJ1",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "fOmX9aaQD3",
+        "submission_id": "fOmX9aaQD3",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25572/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353830568,
-        "created_date": 1769416874183,
+        "last_modified": 1770805202669,
+        "created_date": 1758369180643,
         "license": "CC BY 4.0"
     },
-    "9nJzAMdagG": {
-        "id": "9nJzAMdagG",
-        "title": "Paper Decision",
+    "2ePvhEKxQj": {
+        "id": "2ePvhEKxQj",
+        "title": "Causal Reasoning Favors Encoders: Limits of Decoder-Only Models",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "CYGI23WQjI",
-        "submission_id": "CYGI23WQjI",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "2ePvhEKxQj",
+        "submission_id": "2ePvhEKxQj",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25568/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353830713,
-        "created_date": 1769416874420,
+        "last_modified": 1770805202600,
+        "created_date": 1758369145262,
         "license": "CC BY 4.0"
     },
-    "53CiQK9dEO": {
-        "id": "53CiQK9dEO",
-        "title": "Paper Decision",
+    "Q40JCBKW1q": {
+        "id": "Q40JCBKW1q",
+        "title": "Curriculum-Based Termination Critic for Scalable Program Decomposition in Hierarchical Reinforcement Learning",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "YyOgB1HddJ",
-        "submission_id": "YyOgB1HddJ",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "Q40JCBKW1q",
+        "submission_id": "Q40JCBKW1q",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25563/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353830873,
-        "created_date": 1769416874594,
+        "last_modified": 1770805202553,
+        "created_date": 1758369103152,
         "license": "CC BY 4.0"
     },
-    "SMUzrMu3SM": {
-        "id": "SMUzrMu3SM",
-        "title": "Paper Decision",
+    "4Nsx2kZkex": {
+        "id": "4Nsx2kZkex",
+        "title": "Differentiable Verification for Safe Reinforcement Learning in Verifiable Code Synthesis",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "WbV6w9R2Ox",
-        "submission_id": "WbV6w9R2Ox",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "4Nsx2kZkex",
+        "submission_id": "4Nsx2kZkex",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25549/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353830989,
-        "created_date": 1769416874614,
+        "last_modified": 1770805202336,
+        "created_date": 1758369033574,
         "license": "CC BY 4.0"
     },
-    "PwiN4bydzw": {
-        "id": "PwiN4bydzw",
-        "title": "Paper Decision",
+    "dcqnFZAczW": {
+        "id": "dcqnFZAczW",
+        "title": "Disentangled Code Embedding for Multi-Task Reinforcement Learning: A Dual-Encoder Approach with Dynamic Gating",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "sDoZSETSwr",
-        "submission_id": "sDoZSETSwr",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "dcqnFZAczW",
+        "submission_id": "dcqnFZAczW",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25534/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353831115,
-        "created_date": 1769416874858,
+        "last_modified": 1770805202290,
+        "created_date": 1758368965504,
         "license": "CC BY 4.0"
     },
-    "6IvHiFkrjg": {
-        "id": "6IvHiFkrjg",
-        "title": "Paper Decision",
+    "FRp8cu1aKF": {
+        "id": "FRp8cu1aKF",
+        "title": "On the (In)Significance of Feature Selection in High-Dimensional Datasets",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "61jN0L0aoJ",
-        "submission_id": "61jN0L0aoJ",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "FRp8cu1aKF",
+        "submission_id": "FRp8cu1aKF",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25529/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353830963,
-        "created_date": 1769416875027,
+        "last_modified": 1770805202275,
+        "created_date": 1758368942156,
         "license": "CC BY 4.0"
     },
-    "gow1wJ1WgU": {
-        "id": "gow1wJ1WgU",
-        "title": "Paper Decision",
+    "gOf2ht5O0d": {
+        "id": "gOf2ht5O0d",
+        "title": "Domain-Adaptive Syntax Tree Repair via Cross-Corpus Transfer with Adversarially Aligned Transformers",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "fhG2tZgnRJ",
-        "submission_id": "fhG2tZgnRJ",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "gOf2ht5O0d",
+        "submission_id": "gOf2ht5O0d",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25525/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353831512,
-        "created_date": 1769416875409,
+        "last_modified": 1770805202117,
+        "created_date": 1758368890776,
         "license": "CC BY 4.0"
     },
-    "uH0cR0nBW1": {
-        "id": "uH0cR0nBW1",
-        "title": "Paper Decision",
+    "CrGxvyppMS": {
+        "id": "CrGxvyppMS",
+        "title": "Data Passports: Confidentially Provable Provenance for Onboarding Verifiable ML",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "bIAFQ8asqi",
-        "submission_id": "bIAFQ8asqi",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "CrGxvyppMS",
+        "submission_id": "CrGxvyppMS",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25524/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353832161,
-        "created_date": 1769416875705,
+        "last_modified": 1770805202093,
+        "created_date": 1758368879473,
         "license": "CC BY 4.0"
     },
-    "22Eu3HaEIt": {
-        "id": "22Eu3HaEIt",
-        "title": "Paper Decision",
+    "U7pWkp90qA": {
+        "id": "U7pWkp90qA",
+        "title": "DyCodeExplainer: Explainable Dynamic Graph Attention for Multi-Agent Reinforcement Learning in Collaborative Coding",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "YVdcXMFt7H",
-        "submission_id": "YVdcXMFt7H",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "U7pWkp90qA",
+        "submission_id": "U7pWkp90qA",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25517/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353832107,
-        "created_date": 1769416876142,
+        "last_modified": 1770805201997,
+        "created_date": 1758368817992,
         "license": "CC BY 4.0"
     },
-    "JNFvvngw0j": {
-        "id": "JNFvvngw0j",
-        "title": "Paper Decision",
+    "sz2gtTBVIq": {
+        "id": "sz2gtTBVIq",
+        "title": "TrustGen: Benchmarking Trustworthiness in Generative Models for Russian Language Processing Tasks",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "jQrafTCmUI",
-        "submission_id": "jQrafTCmUI",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "sz2gtTBVIq",
+        "submission_id": "sz2gtTBVIq",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25514/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353832719,
-        "created_date": 1769416876194,
+        "last_modified": 1770805202008,
+        "created_date": 1758368799758,
         "license": "CC BY 4.0"
     },
-    "Xf2NbDejVX": {
-        "id": "Xf2NbDejVX",
-        "title": "Paper Decision",
+    "JWQtXbVRbs": {
+        "id": "JWQtXbVRbs",
+        "title": "Non-Additive Time-Series Forecasting via Cross-Decomposition and Linear Attention",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "76flfkkawe",
-        "submission_id": "76flfkkawe",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "JWQtXbVRbs",
+        "submission_id": "JWQtXbVRbs",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25513/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353831696,
-        "created_date": 1769416876325,
+        "last_modified": 1770805201932,
+        "created_date": 1758368788449,
         "license": "CC BY 4.0"
     },
-    "5Cxk48eCsP": {
-        "id": "5Cxk48eCsP",
-        "title": "Paper Decision",
+    "uajSG0jubM": {
+        "id": "uajSG0jubM",
+        "title": "MouseDTB: A Mouse Digital Twin Brain at Single-neuron Resolution",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "lA4VkYKUyi",
-        "submission_id": "lA4VkYKUyi",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "uajSG0jubM",
+        "submission_id": "uajSG0jubM",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25506/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353832846,
-        "created_date": 1769416877322,
+        "last_modified": 1770805201828,
+        "created_date": 1758368696427,
         "license": "CC BY 4.0"
     },
-    "xO7L6f3uKG": {
-        "id": "xO7L6f3uKG",
-        "title": "Paper Decision",
+    "0wJuW3snwU": {
+        "id": "0wJuW3snwU",
+        "title": "SD-MAD: Sign-Driven Few-shot Multi-Anomaly Detection in Medical Images",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "vhhwY0AVgu",
-        "submission_id": "vhhwY0AVgu",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "0wJuW3snwU",
+        "submission_id": "0wJuW3snwU",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25499/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353832976,
-        "created_date": 1769416878583,
+        "last_modified": 1770805201792,
+        "created_date": 1758368670307,
         "license": "CC BY 4.0"
     },
-    "iGfEc4ycyP": {
-        "id": "iGfEc4ycyP",
-        "title": "Paper Decision",
+    "pKKtSi88fH": {
+        "id": "pKKtSi88fH",
+        "title": "ObjexMT: Objective Extraction and Metacognitive Calibration for LLM-as-a-Judge under Multi-Turn Jailbreaks",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "iym4FlxDLl",
-        "submission_id": "iym4FlxDLl",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "pKKtSi88fH",
+        "submission_id": "pKKtSi88fH",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25496/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353468857,
-        "created_date": 1769416445419,
+        "last_modified": 1770805201731,
+        "created_date": 1758368662003,
         "license": "CC BY 4.0"
     },
-    "ZRP97Nvu1O": {
-        "id": "ZRP97Nvu1O",
-        "title": "Paper Decision",
+    "WkGnZsnCDR": {
+        "id": "WkGnZsnCDR",
+        "title": "Hierarchical Graph-coding Diffusion Model with Adaptive Information Bottleneck for Multichannel Speech Enhancement",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "ndrUH7IF3L",
-        "submission_id": "ndrUH7IF3L",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "WkGnZsnCDR",
+        "submission_id": "WkGnZsnCDR",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25493/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353833428,
-        "created_date": 1769416878884,
+        "last_modified": 1770805201707,
+        "created_date": 1758368627237,
         "license": "CC BY 4.0"
     },
-    "rhjU4uE2wX": {
-        "id": "rhjU4uE2wX",
-        "title": "Paper Decision",
+    "S2vVSNJhFw": {
+        "id": "S2vVSNJhFw",
+        "title": "Dynamic Contrastive Reinforcement Learning for Adaptive Code-Text Alignment via Multi-Modal Fusion",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "lxyvBCXsGV",
-        "submission_id": "lxyvBCXsGV",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "S2vVSNJhFw",
+        "submission_id": "S2vVSNJhFw",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25491/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353833735,
-        "created_date": 1769416879249,
+        "last_modified": 1770805201671,
+        "created_date": 1758368619920,
         "license": "CC BY 4.0"
     },
-    "JPLvWqDTB9": {
-        "id": "JPLvWqDTB9",
-        "title": "Paper Decision",
+    "lFaLBotlag": {
+        "id": "lFaLBotlag",
+        "title": "Dynamic Incremental Code Embeddings (DICE):  A Real-Time Communication Protocol for Multi-Agent Reinforcement Learning",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "BiD2Vt7Np7",
-        "submission_id": "BiD2Vt7Np7",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "lFaLBotlag",
+        "submission_id": "lFaLBotlag",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25483/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353833850,
-        "created_date": 1769416879434,
+        "last_modified": 1770805201666,
+        "created_date": 1758368510254,
         "license": "CC BY 4.0"
     },
-    "gXlBlR97MI": {
-        "id": "gXlBlR97MI",
-        "title": "Paper Decision",
+    "FFIn2TH7aU": {
+        "id": "FFIn2TH7aU",
+        "title": "Supra-Tuning: Combining Outlier and Low-Rank Adaptation for Sparse and Efficient LLM Fine-Tuning",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "DmhbGdwIkr",
-        "submission_id": "DmhbGdwIkr",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "FFIn2TH7aU",
+        "submission_id": "FFIn2TH7aU",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25479/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353833759,
-        "created_date": 1769416879476,
+        "last_modified": 1770805201661,
+        "created_date": 1758368496820,
         "license": "CC BY 4.0"
     },
-    "XBzF0JhZwi": {
-        "id": "XBzF0JhZwi",
-        "title": "Paper Decision",
+    "kuaZXtReJ0": {
+        "id": "kuaZXtReJ0",
+        "title": "Self-Organizing Resonant Network",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "aJvM8VUVuV",
-        "submission_id": "aJvM8VUVuV",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "kuaZXtReJ0",
+        "submission_id": "kuaZXtReJ0",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25477/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353833745,
-        "created_date": 1769416879679,
+        "last_modified": 1770805201606,
+        "created_date": 1758368448492,
         "license": "CC BY 4.0"
     },
-    "wJOjod6NW9": {
-        "id": "wJOjod6NW9",
-        "title": "Paper Decision",
+    "95bwpkVPuR": {
+        "id": "95bwpkVPuR",
+        "title": "Dynamic Role-Graph Reinforcement Learning for Multi-Agent Collaborative Coding Systems",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "7cHHibwDXH",
-        "submission_id": "7cHHibwDXH",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "95bwpkVPuR",
+        "submission_id": "95bwpkVPuR",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25475/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353834062,
-        "created_date": 1769416879678,
+        "last_modified": 1770805201536,
+        "created_date": 1758368413347,
         "license": "CC BY 4.0"
     },
-    "10URFXGnTR": {
-        "id": "10URFXGnTR",
-        "title": "Paper Decision",
+    "7w9GUhqSnN": {
+        "id": "7w9GUhqSnN",
+        "title": "BayesENDS: Bayesian Electrophysiological Neural Dynamical Systems for Alzheimer’s Disease Diagnosis",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "2dJt9YKeg9",
-        "submission_id": "2dJt9YKeg9",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "7w9GUhqSnN",
+        "submission_id": "7w9GUhqSnN",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25469/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353834049,
-        "created_date": 1769416879900,
+        "last_modified": 1770805201456,
+        "created_date": 1758368356630,
         "license": "CC BY 4.0"
     },
-    "tRP91yfHrW": {
-        "id": "tRP91yfHrW",
-        "title": "Paper Decision",
+    "oztUriaGPk": {
+        "id": "oztUriaGPk",
+        "title": "Bernoulli-LoRA: A Theoretical Framework for Randomized Low-Rank Adaptation",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "QxoyccprRp",
-        "submission_id": "QxoyccprRp",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "oztUriaGPk",
+        "submission_id": "oztUriaGPk",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25467/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353834851,
-        "created_date": 1769416880312,
+        "last_modified": 1770805201401,
+        "created_date": 1758368346454,
         "license": "CC BY 4.0"
     },
-    "VjvwjN9OfT": {
-        "id": "VjvwjN9OfT",
-        "title": "Paper Decision",
+    "dWVWQN3sPt": {
+        "id": "dWVWQN3sPt",
+        "title": "Beyond Anecdotal Evidence: A Systematic Framework for Evaluating Neuron Interpretability",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "sk4IkvfwVC",
-        "submission_id": "sk4IkvfwVC",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "dWVWQN3sPt",
+        "submission_id": "dWVWQN3sPt",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25464/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353834755,
-        "created_date": 1769416880316,
+        "last_modified": 1770805201363,
+        "created_date": 1758368321031,
         "license": "CC BY 4.0"
     },
-    "kDSLF0LuvZ": {
-        "id": "kDSLF0LuvZ",
-        "title": "Paper Decision",
+    "nl6m20dzM6": {
+        "id": "nl6m20dzM6",
+        "title": "Dynamic Semantic Equivalence Checking for Adversarially Robust Neural Compilers",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "wnhwQp8Umq",
-        "submission_id": "wnhwQp8Umq",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "nl6m20dzM6",
+        "submission_id": "nl6m20dzM6",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25461/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353834774,
-        "created_date": 1769416880522,
+        "last_modified": 1770805201346,
+        "created_date": 1758368303688,
         "license": "CC BY 4.0"
     },
-    "XmzreA0fQ5": {
-        "id": "XmzreA0fQ5",
-        "title": "Paper Decision",
+    "qfeSpu5FBE": {
+        "id": "qfeSpu5FBE",
+        "title": "Treating Neural Image Compression via Modular Adversarial Optimization: From Global Distortion to Local Artifacts",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "3bfseFWNUH",
-        "submission_id": "3bfseFWNUH",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "qfeSpu5FBE",
+        "submission_id": "qfeSpu5FBE",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25459/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353834266,
-        "created_date": 1769416880659,
+        "last_modified": 1770805201332,
+        "created_date": 1758368293051,
         "license": "CC BY 4.0"
     },
-    "vgerS08ygg": {
-        "id": "vgerS08ygg",
-        "title": "Paper Decision",
+    "4TFfiG17ec": {
+        "id": "4TFfiG17ec",
+        "title": "Thanos: A Block-wise Pruning Algorithm for Efficient Large Language Model Compression",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "5Y4wvlp923",
-        "submission_id": "5Y4wvlp923",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "4TFfiG17ec",
+        "submission_id": "4TFfiG17ec",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25458/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353834771,
-        "created_date": 1769416880697,
+        "last_modified": 1770805201308,
+        "created_date": 1758368282511,
         "license": "CC BY 4.0"
     },
-    "tgvHxlRGqq": {
-        "id": "tgvHxlRGqq",
-        "title": "Paper Decision",
+    "f9cYLpakOI": {
+        "id": "f9cYLpakOI",
+        "title": "Endogenous Communication in Repeated Games with Learning Agents",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "voqdJhz26e",
-        "submission_id": "voqdJhz26e",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "f9cYLpakOI",
+        "submission_id": "f9cYLpakOI",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25457/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353834772,
-        "created_date": 1769416880922,
+        "last_modified": 1770805201215,
+        "created_date": 1758368254502,
         "license": "CC BY 4.0"
     },
-    "JV71TWBI8V": {
-        "id": "JV71TWBI8V",
-        "title": "Paper Decision",
+    "0JLUFJMo5p": {
+        "id": "0JLUFJMo5p",
+        "title": "Dynamic Task-Embedded Reward Machines for \\\\ Adaptive Code Generation and Manipulation \\\\ in Reinforcement Learning",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "8DBHkEe0sm",
-        "submission_id": "8DBHkEe0sm",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "0JLUFJMo5p",
+        "submission_id": "0JLUFJMo5p",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25449/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353835076,
-        "created_date": 1769416881177,
+        "last_modified": 1770805201219,
+        "created_date": 1758368192077,
         "license": "CC BY 4.0"
     },
-    "Tan225xVFL": {
-        "id": "Tan225xVFL",
-        "title": "Paper Decision",
+    "FPBtaGBv81": {
+        "id": "FPBtaGBv81",
+        "title": "Dynamic Trust Region Adaptation for \\\\ Human-in-the-Loop Reinforcement Learning \\\\ in Code Refinement",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "jINW28iIlM",
-        "submission_id": "jINW28iIlM",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "FPBtaGBv81",
+        "submission_id": "FPBtaGBv81",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25440/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353834964,
-        "created_date": 1769416881490,
+        "last_modified": 1770805201087,
+        "created_date": 1758368114413,
         "license": "CC BY 4.0"
     },
-    "ke9Bnb3zeK": {
-        "id": "ke9Bnb3zeK",
-        "title": "Paper Decision",
+    "gMc5Qa45ia": {
+        "id": "gMc5Qa45ia",
+        "title": "DynamicRank LoRA: Real-Time Adaptive Fine-Tuning \\\\ for Code Models via Token-Level Importance and Loss Landscape Awareness",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "GGHlCO3wQV",
-        "submission_id": "GGHlCO3wQV",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "gMc5Qa45ia",
+        "submission_id": "gMc5Qa45ia",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25435/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353835102,
-        "created_date": 1769416881611,
+        "last_modified": 1770805201058,
+        "created_date": 1758368034334,
         "license": "CC BY 4.0"
     },
-    "hysjwKFyKl": {
-        "id": "hysjwKFyKl",
-        "title": "Paper Decision",
+    "EbSkBZQF9g": {
+        "id": "EbSkBZQF9g",
+        "title": "Mechanistic Interpretability analysis of a single-layer transformer on 0-1 knapsack",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "aUAMKEFwdo",
-        "submission_id": "aUAMKEFwdo",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "EbSkBZQF9g",
+        "submission_id": "EbSkBZQF9g",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25431/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353835575,
-        "created_date": 1769416881772,
+        "last_modified": 1770805201038,
+        "created_date": 1758367977013,
         "license": "CC BY 4.0"
     },
-    "CC3mRr73J7": {
-        "id": "CC3mRr73J7",
-        "title": "Paper Decision",
+    "APawIJjJlP": {
+        "id": "APawIJjJlP",
+        "title": "Fed-Energy: Federated Reinforcement Learning for Scalable and Energy-Efficient Large-Scale Code Optimization",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "FSDxP3ZpAx",
-        "submission_id": "FSDxP3ZpAx",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "APawIJjJlP",
+        "submission_id": "APawIJjJlP",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25428/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353835412,
-        "created_date": 1769416882026,
+        "last_modified": 1770805201025,
+        "created_date": 1758367958953,
         "license": "CC BY 4.0"
     },
-    "UXcY64aslO": {
-        "id": "UXcY64aslO",
-        "title": "Paper Decision",
+    "i6fc97RY1l": {
+        "id": "i6fc97RY1l",
+        "title": "Addition Circuit: How LLMs Add in Their Heads using State Vectors",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "EzHOmjg3R6",
-        "submission_id": "EzHOmjg3R6",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "i6fc97RY1l",
+        "submission_id": "i6fc97RY1l",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25426/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353835507,
-        "created_date": 1769416882139,
+        "last_modified": 1770805201019,
+        "created_date": 1758367946184,
         "license": "CC BY 4.0"
     },
-    "8wPWaRszaP": {
-        "id": "8wPWaRszaP",
-        "title": "Paper Decision",
+    "Gq7cBZC04L": {
+        "id": "Gq7cBZC04L",
+        "title": "Steering Language Models for Theorem Proving",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "weM68cZfMl",
-        "submission_id": "weM68cZfMl",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "Gq7cBZC04L",
+        "submission_id": "Gq7cBZC04L",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25424/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353835427,
-        "created_date": 1769416882142,
+        "last_modified": 1770805200978,
+        "created_date": 1758367936295,
         "license": "CC BY 4.0"
     },
-    "uBFqox44NK": {
-        "id": "uBFqox44NK",
-        "title": "Paper Decision",
+    "w7jkX7FfZ5": {
+        "id": "w7jkX7FfZ5",
+        "title": "Formal-Lagrangian Policy Optimization for Safe Reinforcement Learning in Code Generation with Differentiable Verification",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "egUfF6cesw",
-        "submission_id": "egUfF6cesw",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "w7jkX7FfZ5",
+        "submission_id": "w7jkX7FfZ5",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25415/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353835906,
-        "created_date": 1769416882319,
+        "last_modified": 1770805200910,
+        "created_date": 1758367856850,
         "license": "CC BY 4.0"
     },
-    "QI0HzrSrxq": {
-        "id": "QI0HzrSrxq",
-        "title": "Paper Decision",
+    "pcaHnwjnsO": {
+        "id": "pcaHnwjnsO",
+        "title": "Graph Adversarial Refinement for Robust Code Fixes: Enhancing Policy Networks via Structure-Aware Contrastive Learning",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "Y6NULorfY2",
-        "submission_id": "Y6NULorfY2",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "pcaHnwjnsO",
+        "submission_id": "pcaHnwjnsO",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25409/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353836014,
-        "created_date": 1769416882594,
+        "last_modified": 1770805200916,
+        "created_date": 1758367772147,
         "license": "CC BY 4.0"
     },
-    "T9QE2m5wKo": {
-        "id": "T9QE2m5wKo",
-        "title": "Paper Decision",
+    "NRX1iNUrZ3": {
+        "id": "NRX1iNUrZ3",
+        "title": "Graph-Energy Reinforcement Learning: Adaptive Reward Design for API Usage Pattern Mining with OOD Detection",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "69IxzbIiVb",
-        "submission_id": "69IxzbIiVb",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "NRX1iNUrZ3",
+        "submission_id": "NRX1iNUrZ3",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25404/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353835916,
-        "created_date": 1769416882926,
+        "last_modified": 1770805200847,
+        "created_date": 1758367678967,
         "license": "CC BY 4.0"
     },
-    "VAwoXw3CKp": {
-        "id": "VAwoXw3CKp",
-        "title": "Paper Decision",
+    "zwfpyw345l": {
+        "id": "zwfpyw345l",
+        "title": "Hierarchical Code Embeddings with Multi-Level Attention for Reinforcement Learning State Representation",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "end8EBwFOU",
-        "submission_id": "end8EBwFOU",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "zwfpyw345l",
+        "submission_id": "zwfpyw345l",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25398/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353836794,
-        "created_date": 1769416883791,
+        "last_modified": 1770805200865,
+        "created_date": 1758367518947,
         "license": "CC BY 4.0"
     },
-    "lMeVS67si3": {
-        "id": "lMeVS67si3",
-        "title": "Paper Decision",
+    "2wshkCgNYk": {
+        "id": "2wshkCgNYk",
+        "title": "Performance vs interpretability trade-off of hand-crafted and language model features: The case of protein superfamily classification",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "aCluco67rx",
-        "submission_id": "aCluco67rx",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "2wshkCgNYk",
+        "submission_id": "2wshkCgNYk",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25387/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353836594,
-        "created_date": 1769416883999,
+        "last_modified": 1770805200887,
+        "created_date": 1758367422346,
         "license": "CC BY 4.0"
     },
-    "jHziEdVxaw": {
-        "id": "jHziEdVxaw",
-        "title": "Paper Decision",
+    "29Mote2SrR": {
+        "id": "29Mote2SrR",
+        "title": "Hierarchical Feedback Interface for Human-in-the-Loop Reinforcement Learning in Debugging",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "UX6JWRJudg",
-        "submission_id": "UX6JWRJudg",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "29Mote2SrR",
+        "submission_id": "29Mote2SrR",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25378/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353837372,
-        "created_date": 1769416884397,
+        "last_modified": 1770805200792,
+        "created_date": 1758367319407,
         "license": "CC BY 4.0"
     },
-    "Ltcg6Wehf6": {
-        "id": "Ltcg6Wehf6",
-        "title": "Paper Decision",
+    "w0rVXs6QJM": {
+        "id": "w0rVXs6QJM",
+        "title": "EucliFold: Probing 3D Euclidean Prior in VLMs via Cognitively-Stratified Folding Tasks",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "5EMpJRhabT",
-        "submission_id": "5EMpJRhabT",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "w0rVXs6QJM",
+        "submission_id": "w0rVXs6QJM",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25372/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353836383,
-        "created_date": 1769416884649,
+        "last_modified": 1770805200888,
+        "created_date": 1758367274263,
         "license": "CC BY 4.0"
     },
-    "hmbCrQIxAQ": {
-        "id": "hmbCrQIxAQ",
-        "title": "Paper Decision",
+    "Mq6bGrtktf": {
+        "id": "Mq6bGrtktf",
+        "title": "Aligning Large Language Model Behavior with Human Citation Preferences",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "fHYzKTywr8",
-        "submission_id": "fHYzKTywr8",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "Mq6bGrtktf",
+        "submission_id": "Mq6bGrtktf",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25371/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353837242,
-        "created_date": 1769416885031,
+        "last_modified": 1770805200787,
+        "created_date": 1758367253698,
         "license": "CC BY 4.0"
     },
-    "QdttrHp8T3": {
-        "id": "QdttrHp8T3",
-        "title": "Paper Decision",
+    "uxi7YoZ13b": {
+        "id": "uxi7YoZ13b",
+        "title": "Adversarial Robust Reward Shaping for Safe Reinforcement Learning in AI-Generated Code",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "I29dOHf74X",
-        "submission_id": "I29dOHf74X",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "uxi7YoZ13b",
+        "submission_id": "uxi7YoZ13b",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25368/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353837788,
-        "created_date": 1769416885260,
+        "last_modified": 1770805200680,
+        "created_date": 1758367217694,
         "license": "CC BY 4.0"
     },
-    "sImGHerFDT": {
-        "id": "sImGHerFDT",
-        "title": "Paper Decision",
+    "VjGU55hEwV": {
+        "id": "VjGU55hEwV",
+        "title": "RLIE: Rule Generation with Logistic Regression, Iterative Refinement, and Evaluation for Large Language Models",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "RDLrV9j0tU",
-        "submission_id": "RDLrV9j0tU",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "VjGU55hEwV",
+        "submission_id": "VjGU55hEwV",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25346/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353837762,
-        "created_date": 1769416885372,
+        "last_modified": 1770805200458,
+        "created_date": 1758367040920,
         "license": "CC BY 4.0"
     },
-    "yo7qOrDXHX": {
-        "id": "yo7qOrDXHX",
-        "title": "Paper Decision",
+    "EyswpODUEL": {
+        "id": "EyswpODUEL",
+        "title": "DIANA with Compression for Distributed Variational Inequalities: Eliminating the Need to Transmit Full Gradients",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "BAOO9H0ehZ",
-        "submission_id": "BAOO9H0ehZ",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "EyswpODUEL",
+        "submission_id": "EyswpODUEL",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25336/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353837692,
-        "created_date": 1769416885459,
+        "last_modified": 1770805200370,
+        "created_date": 1758366888684,
         "license": "CC BY 4.0"
     },
-    "2UmVQ6Yeyp": {
-        "id": "2UmVQ6Yeyp",
-        "title": "Paper Decision",
+    "0WdN7pFCja": {
+        "id": "0WdN7pFCja",
+        "title": "Adaptive Inference‑Time Scaling for LRMs using Uncertainty‑Aware RL",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "YTFPvjbtia",
-        "submission_id": "YTFPvjbtia",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "0WdN7pFCja",
+        "submission_id": "0WdN7pFCja",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25317/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353837760,
-        "created_date": 1769416885560,
+        "last_modified": 1770805200266,
+        "created_date": 1758366660357,
         "license": "CC BY 4.0"
     },
-    "ECrMVeVjip": {
-        "id": "ECrMVeVjip",
-        "title": "Paper Decision",
+    "c4ir92gYjv": {
+        "id": "c4ir92gYjv",
+        "title": "Data-Efficient Generalization and Faster Initial Learning in Quantum Models for Classifying Cellular Activation States",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "pNpnqsn0Si",
-        "submission_id": "pNpnqsn0Si",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "c4ir92gYjv",
+        "submission_id": "c4ir92gYjv",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25313/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353838184,
-        "created_date": 1769416885676,
+        "last_modified": 1770805200211,
+        "created_date": 1758366601152,
         "license": "CC BY 4.0"
     },
-    "lJCXANULF1": {
-        "id": "lJCXANULF1",
-        "title": "Paper Decision",
+    "kITJl37ULw": {
+        "id": "kITJl37ULw",
+        "title": "BridgeRAG: A Framework for Reasoning over Partitioned Knowledge Graphs",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "PZUekooCH3",
-        "submission_id": "PZUekooCH3",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "kITJl37ULw",
+        "submission_id": "kITJl37ULw",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25305/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353839578,
-        "created_date": 1769416886313,
+        "last_modified": 1770805200127,
+        "created_date": 1758366515828,
         "license": "CC BY 4.0"
     },
-    "uZhS8tfSQD": {
-        "id": "uZhS8tfSQD",
-        "title": "Paper Decision",
+    "wNAUAPfceN": {
+        "id": "wNAUAPfceN",
+        "title": "Guided Star-Shaped Masked Diffusion",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "3jufZB6g9A",
-        "submission_id": "3jufZB6g9A",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "wNAUAPfceN",
+        "submission_id": "wNAUAPfceN",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25294/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353470407,
-        "created_date": 1769416445662,
+        "last_modified": 1770805199998,
+        "created_date": 1758366275367,
         "license": "CC BY 4.0"
     },
-    "CiKIuFax3L": {
-        "id": "CiKIuFax3L",
-        "title": "Paper Decision",
+    "MLZLdOwEpA": {
+        "id": "MLZLdOwEpA",
+        "title": "AI Alignment with Provable Protection of Human Judgements",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "nxMR2NGFik",
-        "submission_id": "nxMR2NGFik",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "MLZLdOwEpA",
+        "submission_id": "MLZLdOwEpA",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25286/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353839268,
-        "created_date": 1769416886371,
+        "last_modified": 1770805199931,
+        "created_date": 1758366209375,
         "license": "CC BY 4.0"
     },
-    "kKU7z1h2c4": {
-        "id": "kKU7z1h2c4",
-        "title": "Paper Decision",
+    "YtBJHVbxf8": {
+        "id": "YtBJHVbxf8",
+        "title": "HEX: Merging Heavy-Hitters and Expanders for Adaptive KV Cache Optimization in Long-Context Inference",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "oXgxHVTqcm",
-        "submission_id": "oXgxHVTqcm",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "YtBJHVbxf8",
+        "submission_id": "YtBJHVbxf8",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25279/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353838807,
-        "created_date": 1769416886593,
+        "last_modified": 1770805199826,
+        "created_date": 1758366120309,
         "license": "CC BY 4.0"
     },
-    "teNbXDjegR": {
-        "id": "teNbXDjegR",
-        "title": "Paper Decision",
+    "bld5GVRad0": {
+        "id": "bld5GVRad0",
+        "title": "InfoBlend: Storing and Reusing KV Caches of Multimodal Information without Positional Restriction",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "NOrdZNoOu0",
-        "submission_id": "NOrdZNoOu0",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "bld5GVRad0",
+        "submission_id": "bld5GVRad0",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25243/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353838708,
-        "created_date": 1769416886908,
+        "last_modified": 1770805199646,
+        "created_date": 1758365670033,
         "license": "CC BY 4.0"
     },
-    "Mg92vo6YWm": {
-        "id": "Mg92vo6YWm",
-        "title": "Paper Decision",
+    "WHVk2qoCIY": {
+        "id": "WHVk2qoCIY",
+        "title": "Exposing Weak Links in Multi-Agent Systems under Adversarial Prompting",
         "decision": "Reject",
-        "comment": "",
-        "forum_id": "wzX6hi5QGj",
-        "submission_id": "wzX6hi5QGj",
+        "comment": "Passed compliance checking gates, rejected via peer review context.",
+        "forum_id": "WHVk2qoCIY",
+        "submission_id": "WHVk2qoCIY",
         "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
+            "ICLR.cc/2026/Conference/Submission25240/Authors"
         ],
         "readers": [
             "everyone"
         ],
-        "last_modified": 1770353839228,
-        "created_date": 1769416886867,
-        "license": "CC BY 4.0"
-    },
-    "zkgkUw0Hem": {
-        "id": "zkgkUw0Hem",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "wSUysJXv07",
-        "submission_id": "wSUysJXv07",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353839609,
-        "created_date": 1769416887391,
-        "license": "CC BY 4.0"
-    },
-    "L0dh3kFeTn": {
-        "id": "L0dh3kFeTn",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "9pfWYxYHAn",
-        "submission_id": "9pfWYxYHAn",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353840018,
-        "created_date": 1769416887583,
-        "license": "CC BY 4.0"
-    },
-    "FSk43cZev9": {
-        "id": "FSk43cZev9",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "d3zrIHukon",
-        "submission_id": "d3zrIHukon",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353839716,
-        "created_date": 1769416887866,
-        "license": "CC BY 4.0"
-    },
-    "mL3gaG5l86": {
-        "id": "mL3gaG5l86",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "4Mvdn1m861",
-        "submission_id": "4Mvdn1m861",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353840014,
-        "created_date": 1769416887866,
-        "license": "CC BY 4.0"
-    },
-    "7YabfmxhKP": {
-        "id": "7YabfmxhKP",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "SKrG579nWu",
-        "submission_id": "SKrG579nWu",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353839746,
-        "created_date": 1769416888125,
-        "license": "CC BY 4.0"
-    },
-    "xNybsASU6d": {
-        "id": "xNybsASU6d",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "dmz52Fahar",
-        "submission_id": "dmz52Fahar",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353840520,
-        "created_date": 1769416888159,
-        "license": "CC BY 4.0"
-    },
-    "Wqh7NBBysa": {
-        "id": "Wqh7NBBysa",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "334PKDEIBF",
-        "submission_id": "334PKDEIBF",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353840071,
-        "created_date": 1769416888398,
-        "license": "CC BY 4.0"
-    },
-    "xBWnbzweqt": {
-        "id": "xBWnbzweqt",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "AlqrnU93o7",
-        "submission_id": "AlqrnU93o7",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353840723,
-        "created_date": 1769416888452,
-        "license": "CC BY 4.0"
-    },
-    "CvEmAgTdui": {
-        "id": "CvEmAgTdui",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "c8NK4icrZD",
-        "submission_id": "c8NK4icrZD",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353840307,
-        "created_date": 1769416888951,
-        "license": "CC BY 4.0"
-    },
-    "ZiXLSKs75r": {
-        "id": "ZiXLSKs75r",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "jhJjW2DFKD",
-        "submission_id": "jhJjW2DFKD",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353469921,
-        "created_date": 1769416445997,
-        "license": "CC BY 4.0"
-    },
-    "ktORRREwXl": {
-        "id": "ktORRREwXl",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "3gnCCDnMXx",
-        "submission_id": "3gnCCDnMXx",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353840440,
-        "created_date": 1769416889483,
-        "license": "CC BY 4.0"
-    },
-    "SHfAbQMt7E": {
-        "id": "SHfAbQMt7E",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "R1HcIN90A1",
-        "submission_id": "R1HcIN90A1",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353840606,
-        "created_date": 1769416889685,
-        "license": "CC BY 4.0"
-    },
-    "7mM1olhQXD": {
-        "id": "7mM1olhQXD",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "Jl0QHFcyCl",
-        "submission_id": "Jl0QHFcyCl",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353470022,
-        "created_date": 1769416446049,
-        "license": "CC BY 4.0"
-    },
-    "K3ygCTLkHh": {
-        "id": "K3ygCTLkHh",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "VCtqg9aFaC",
-        "submission_id": "VCtqg9aFaC",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353469869,
-        "created_date": 1769416446249,
-        "license": "CC BY 4.0"
-    },
-    "vndUvYfrkG": {
-        "id": "vndUvYfrkG",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "LNkeiyIp4f",
-        "submission_id": "LNkeiyIp4f",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353841640,
-        "created_date": 1769416890172,
-        "license": "CC BY 4.0"
-    },
-    "QY4tRvrYAm": {
-        "id": "QY4tRvrYAm",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "SnDBJegMX8",
-        "submission_id": "SnDBJegMX8",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353841696,
-        "created_date": 1769416890249,
-        "license": "CC BY 4.0"
-    },
-    "ZoCBcIwEMZ": {
-        "id": "ZoCBcIwEMZ",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "oWFtI0cNsE",
-        "submission_id": "oWFtI0cNsE",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353841050,
-        "created_date": 1769416890415,
-        "license": "CC BY 4.0"
-    },
-    "IzoSNKpYKc": {
-        "id": "IzoSNKpYKc",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "YYGsM9ZHHB",
-        "submission_id": "YYGsM9ZHHB",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353841253,
-        "created_date": 1769416890436,
-        "license": "CC BY 4.0"
-    },
-    "XC1B1XUrgi": {
-        "id": "XC1B1XUrgi",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "8Bk0AMtyKf",
-        "submission_id": "8Bk0AMtyKf",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353841456,
-        "created_date": 1769416890481,
-        "license": "CC BY 4.0"
-    },
-    "8BMRjNCU3P": {
-        "id": "8BMRjNCU3P",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "h5nQybadry",
-        "submission_id": "h5nQybadry",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353842477,
-        "created_date": 1769416891854,
-        "license": "CC BY 4.0"
-    },
-    "SXQWALjZqf": {
-        "id": "SXQWALjZqf",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "zmYx32SSOR",
-        "submission_id": "zmYx32SSOR",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353470534,
-        "created_date": 1769416446449,
-        "license": "CC BY 4.0"
-    },
-    "ClTNhj2ud4": {
-        "id": "ClTNhj2ud4",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "ya12uarRYU",
-        "submission_id": "ya12uarRYU",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353842617,
-        "created_date": 1769416892041,
-        "license": "CC BY 4.0"
-    },
-    "tjXiZGC1ew": {
-        "id": "tjXiZGC1ew",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "7zuhQWJIqX",
-        "submission_id": "7zuhQWJIqX",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353842819,
-        "created_date": 1769416892405,
-        "license": "CC BY 4.0"
-    },
-    "9SEG5ivJGn": {
-        "id": "9SEG5ivJGn",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "Ke5QBMEyd6",
-        "submission_id": "Ke5QBMEyd6",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353843578,
-        "created_date": 1769416893097,
-        "license": "CC BY 4.0"
-    },
-    "Te5x3Me0NW": {
-        "id": "Te5x3Me0NW",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "TKuAQAdQvU",
-        "submission_id": "TKuAQAdQvU",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353843196,
-        "created_date": 1769416893114,
-        "license": "CC BY 4.0"
-    },
-    "JCez51dVoS": {
-        "id": "JCez51dVoS",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "sNjos7jJxb",
-        "submission_id": "sNjos7jJxb",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353470192,
-        "created_date": 1769416446571,
-        "license": "CC BY 4.0"
-    },
-    "AYXegO03ZF": {
-        "id": "AYXegO03ZF",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "O0FcS21JVY",
-        "submission_id": "O0FcS21JVY",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353843200,
-        "created_date": 1769416893205,
-        "license": "CC BY 4.0"
-    },
-    "MyGPJme2rV": {
-        "id": "MyGPJme2rV",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "M3uTWE4FhR",
-        "submission_id": "M3uTWE4FhR",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353843517,
-        "created_date": 1769416893374,
-        "license": "CC BY 4.0"
-    },
-    "gEEzQ1gRmn": {
-        "id": "gEEzQ1gRmn",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "CJzN9leyL0",
-        "submission_id": "CJzN9leyL0",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353843641,
-        "created_date": 1769416893611,
-        "license": "CC BY 4.0"
-    },
-    "oHKGxeLpF8": {
-        "id": "oHKGxeLpF8",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "jqLqBG6d2q",
-        "submission_id": "jqLqBG6d2q",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353843717,
-        "created_date": 1769416893691,
-        "license": "CC BY 4.0"
-    },
-    "YWl9vTmetw": {
-        "id": "YWl9vTmetw",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "Wr5JAZrdgO",
-        "submission_id": "Wr5JAZrdgO",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353843591,
-        "created_date": 1769416893939,
-        "license": "CC BY 4.0"
-    },
-    "8MJCmbmZgq": {
-        "id": "8MJCmbmZgq",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "wX6L6TevaQ",
-        "submission_id": "wX6L6TevaQ",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353844109,
-        "created_date": 1769416893930,
-        "license": "CC BY 4.0"
-    },
-    "IRFOiqifZm": {
-        "id": "IRFOiqifZm",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "KS7vlU94eU",
-        "submission_id": "KS7vlU94eU",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353844110,
-        "created_date": 1769416894243,
-        "license": "CC BY 4.0"
-    },
-    "Xbp88AzEXO": {
-        "id": "Xbp88AzEXO",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "CbxZ86mWrs",
-        "submission_id": "CbxZ86mWrs",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353843785,
-        "created_date": 1769416894438,
-        "license": "CC BY 4.0"
-    },
-    "AbBdB7HwDH": {
-        "id": "AbBdB7HwDH",
-        "title": "Paper Decision",
-        "decision": "Reject",
-        "comment": "",
-        "forum_id": "O3CuUy5XAX",
-        "submission_id": "O3CuUy5XAX",
-        "program_chairs": [
-            "ICLR.cc/2026/Conference/Program_Chairs"
-        ],
-        "readers": [
-            "everyone"
-        ],
-        "last_modified": 1770353845126,
-        "created_date": 1769416894599,
+        "last_modified": 1770805199632,
+        "created_date": 1758365596772,
         "license": "CC BY 4.0"
     }
 }
