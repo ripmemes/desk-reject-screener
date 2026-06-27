@@ -15,7 +15,7 @@ from config.paths import ProjectPaths
 class ScreeningLLMClient:
     # class to reuse the network connection + track token usage
 
-    def __init__(self, model_name: str = "google/gemini-3.5-flash"):
+    def __init__(self, model_name: str = "qwen/qwen3.7-plus"):
         
         self.paths = ProjectPaths() 
         load_dotenv(self.paths.dotenv_path)
@@ -68,6 +68,11 @@ class ScreeningLLMClient:
         detailed_justifications = []
         detected_external_links = []
         responsible_steps = []
+
+        paper_input_tokens = 0
+        paper_output_tokens = 0
+
+        step_usages = {}
         
         for step in self.pipeline:
             step_name = step.__class__.__name__
@@ -82,14 +87,26 @@ class ScreeningLLMClient:
                     "is_desk_reject": -1,
                     "rejection_category": [],
                     "detailed_justification": None,
-                    "detected_external_links": None
+                    "detected_external_links": None,
+                    "usage": {
+                        "input_tokens": None,
+                        "output_tokens": None,
+                        "step_usages": None
+                    }
                 }
             
 
 
             if "usage" in verdict:
-                self.total_input_tokens += verdict["usage"].get("input_tokens", 0)
-                self.total_output_tokens += verdict["usage"].get("output_tokens", 0)
+                in_t = verdict["usage"].get("input_tokens", 0)
+                out_t = verdict["usage"].get("output_tokens", 0)
+                
+                self.total_input_tokens += in_t
+                self.total_output_tokens += out_t
+                paper_input_tokens += in_t
+                paper_output_tokens += out_t
+
+                step_usages[step_name] = {"input_tokens": in_t, "output_tokens": out_t}
             
             if verdict.get("is_desk_reject") == 1:
                 is_desk_reject = 1
@@ -112,7 +129,12 @@ class ScreeningLLMClient:
             "rejection_category": rejection_category,
             "detailed_justification": " | ".join(detailed_justifications),
             "responsible_steps" : responsible_steps,
-            "detected_external_links": list(set(detected_external_links))
+            "detected_external_links": list(set(detected_external_links)),
+            "usage": {
+                "input_tokens": paper_input_tokens,
+                "output_tokens": paper_output_tokens,
+                "step_usages": step_usages
+            }
         }
 
     def print_usage_report(self):
@@ -136,7 +158,7 @@ if __name__ == "__main__":
         evaluator = ScreeningLLMClient(model_name=qwen)
 
         evaluator.load_anchors(labels_json_path=evaluator.paths.anchor_dataset_json)
-        file_path = evaluator.paths.get_evaluation_pdf_path('DRWSVEmGt1', 'desk-rejects')
+        file_path = evaluator.paths.get_evaluation_pdf_path('s3sdghSQDL', 'desk-rejects')
         print(evaluator.evaluate_paper(file_path))
         evaluator.print_usage_report()
 
