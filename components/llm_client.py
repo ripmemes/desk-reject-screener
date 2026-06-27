@@ -6,7 +6,8 @@ from config.prompts import *
 from evaluators.page_limit import VisualBoundaryCheck
 from evaluators.layout import LayoutCheck
 from evaluators.text import TextualCheck
-from evaluators.base import EvaluationStep
+from evaluators.anonymity import AnonymityCheck
+from evaluators.citation import CitationCheck
 from config.paths import ProjectPaths
 
 # this code was partially generated with the assistance of GitHub Copilot and Google Gemini, and thoroughly reviewed and adjusted by the author.
@@ -30,6 +31,8 @@ class ScreeningLLMClient:
         self.pipeline = [ 
             VisualBoundaryCheck(),
             LayoutCheck(),
+            AnonymityCheck(),
+            CitationCheck(),
             TextualCheck()
         ]
         # Anchor dataset dictionary acting as the in-context evaluation standard
@@ -61,9 +64,10 @@ class ScreeningLLMClient:
         # file_path = self.paths.get_evaluation_pdf_path(paper_forum_id, status_folder)
         
         is_desk_reject = 0
-        rejection_category = None
+        rejection_category = []
         detailed_justifications = []
         detected_external_links = []
+        responsible_steps = []
         
         for step in self.pipeline:
             step_name = step.__class__.__name__
@@ -76,11 +80,11 @@ class ScreeningLLMClient:
                 print(f"Error running Evaluation step {step_name} : {err} , cancelling evaluation")
                 return {
                     "is_desk_reject": -1,
-                    "rejection_category": None,
+                    "rejection_category": [],
                     "detailed_justification": None,
                     "detected_external_links": None
                 }
-                # continue
+            
 
 
             if "usage" in verdict:
@@ -90,13 +94,15 @@ class ScreeningLLMClient:
             if verdict.get("is_desk_reject") == 1:
                 is_desk_reject = 1
                 if verdict.get("rejection_category"):
-                    rejection_category = verdict.get("rejection_category")
+                    rejection_category.append(verdict.get("rejection_category"))
+                responsible_steps.append(step.__class__.__name__)
 
             justification = verdict.get('detailed_justification')
             if not justification or justification.lower().strip() in ["none", "null", "none."]:
                 justification = "Compliant. No violations detected."
                     
             detailed_justifications.append(f"[{step_name}]: {justification}")
+            
             
             if "detected_external_links" in verdict:
                 detected_external_links.extend(verdict.get("detected_external_links", []))
@@ -105,6 +111,7 @@ class ScreeningLLMClient:
             "is_desk_reject": is_desk_reject,
             "rejection_category": rejection_category,
             "detailed_justification": " | ".join(detailed_justifications),
+            "responsible_steps" : responsible_steps,
             "detected_external_links": list(set(detected_external_links))
         }
 
@@ -122,11 +129,13 @@ if __name__ == "__main__":
     gemini_flash_2_5 = "google/gemini-2.5-flash"
     gemini_flash_3_5 = "google/gemini-3.5-flash"
     gpt_mini  = "openai/gpt-4o-mini"
-
+    kimi = "moonshotai/kimi-k2.5"
+    qwen = "qwen/qwen3.7-plus"
+    stepfun = "stepfun/step-3.7-flash" # the cheapest
     try:
-        evaluator = ScreeningLLMClient(model_name=gemini_flash_3_5)
+        evaluator = ScreeningLLMClient(model_name=qwen)
 
-        evaluator.load_anchors(labels_json_path=evaluator.paths.manual_dataset_json)
+        evaluator.load_anchors(labels_json_path=evaluator.paths.anchor_dataset_json)
         file_path = evaluator.paths.get_evaluation_pdf_path('DRWSVEmGt1', 'desk-rejects')
         print(evaluator.evaluate_paper(file_path))
         evaluator.print_usage_report()
