@@ -20,11 +20,24 @@ class TextualCheck(EvaluationStep):
 
         accepted_papers = [data for id, data in step_anchors.items() if data['is_desk_reject'] == 0]
         rejected_papers = [data for id, data in step_anchors.items() if data['is_desk_reject'] == 1]
+
+        #---- CAP
+        accepted_papers = accepted_papers[:25]
+        rejected_papers = rejected_papers[:25]
+
+        #----
         
-       
-        for i, reject_data in enumerate(rejected_papers):
+        num_accepted = len(accepted_papers)
+        num_rejected = len(rejected_papers)
+        max_len = max(num_accepted, num_rejected)
+
+
+        # for i, reject_data in enumerate(rejected_papers):
+        for i in range(max_len):
             if i < len(accepted_papers):
                 final_anchor_string += accepted_papers[i]['text_fragment']
+            if i < len(rejected_papers):
+                reject_data = rejected_papers[i]
             final_anchor_string += reject_data['text_fragment']
 
         parsed_target_text, _ = extract_pdf_data(pdf_path)

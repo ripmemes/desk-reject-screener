@@ -24,9 +24,20 @@ class AnonymityCheck(EvaluationStep):
 
         accepted_papers = [data for id, data in step_anchors.items() if data['is_desk_reject'] == 0]
         rejected_papers = [data for id, data in step_anchors.items() if data['is_desk_reject'] == 1]
+
+        #---- CAP
+        accepted_papers = accepted_papers[:25]
+        rejected_papers = rejected_papers[:25]
+
+        #----
+
+        num_accepted = len(accepted_papers)
+        num_rejected = len(rejected_papers)
+        max_len = max(num_accepted, num_rejected)
         
-        for i, reject_data in enumerate(rejected_papers):
-            if i < len(accepted_papers):
+        # for i, reject_data in enumerate(rejected_papers):
+        for i in range(max_len):
+            if i < num_accepted:
                 payload_content.append({
                     "type": "text",
                     "text": "=== ANCHOR CASE (VERDICT: 0) ===\nSTATUS: COMPLIANT\n"
@@ -41,21 +52,22 @@ class AnonymityCheck(EvaluationStep):
                         "type": "image_url",
                         "image_url": {"url": f"data:image/png;base64,{accepted_papers[i]['visual_anchors']['page_1']}"}
                     })
-            
-            payload_content.append({
-                "type": "text",
-                "text": f"=== ANCHOR CASE (VERDICT: 1) ===\nREASON: {reject_data['rejection_category']}\n"
-            })
-            if reject_data.get('text_fragment'):
+            if i < num_rejected : 
+                reject_data = rejected_papers[i]
                 payload_content.append({
                     "type": "text",
-                    "text": f"FRAGMENT TEXT:\n{reject_data['text_fragment']}\n"
+                    "text": f"=== ANCHOR CASE (VERDICT: 1) ===\nREASON: {reject_data['rejection_category']}\n"
                 })
-            if "page_1" in reject_data.get('visual_anchors', {}):
-                payload_content.append({
-                    "type": "image_url",
-                    "image_url": {"url": f"data:image/png;base64,{reject_data['visual_anchors']['page_1']}"}
-                })
+                if reject_data.get('text_fragment'):
+                    payload_content.append({
+                        "type": "text",
+                        "text": f"FRAGMENT TEXT:\n{reject_data['text_fragment']}\n"
+                    })
+                if "page_1" in reject_data.get('visual_anchors', {}):
+                    payload_content.append({
+                        "type": "image_url",
+                        "image_url": {"url": f"data:image/png;base64,{reject_data['visual_anchors']['page_1']}"}
+                    })
 
         parsed_target_text, _ = extract_pdf_data(pdf_path)
         

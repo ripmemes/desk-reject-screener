@@ -25,8 +25,7 @@ class EvaluationStep:
             else:
                 selected_accepted.append((id, data))
         
-        target_sample_size = len(selected_rejects)
-        final_anchors = list(selected_rejects.values()) + selected_accepted[:target_sample_size] # For now we feed as many accepted papers as there are desk rejects
+        final_anchors = list(selected_rejects.values()) + selected_accepted
         
         for id, data in final_anchors: 
             fragment = f"=== ANCHOR CASE: {id} (VERDICT: {data['is_desk_reject']}) ===\n"
@@ -54,7 +53,7 @@ class EvaluationStep:
                 if anchor_pdf_path and os.path.exists(anchor_pdf_path):
                     try:
                         visuals = {
-                            "page_1": self.get_page_as_base64_image(anchor_pdf_path, page_num=9),
+                            "page_1": self.get_page_as_base64_image(anchor_pdf_path, page_num=1),
                             "page_9": self.get_page_as_base64_image(anchor_pdf_path, page_num=9),
                             "page_10": self.get_page_as_base64_image(anchor_pdf_path, page_num=10)
                         }
@@ -71,7 +70,7 @@ class EvaluationStep:
         return compiled_anchors
     
     @staticmethod
-    def get_page_as_base64_image(pdf_path: str, page_num: int, zoom: float = 2.0) -> str: 
+    def get_page_as_base64_image(pdf_path: str, page_num: int, zoom: float = 0.8) -> str: 
         """Renders a specific 1-based page number from a PDF into a crisp Base64 PNG."""
         doc = fitz.open(pdf_path)
         if page_num > doc.page_count:
