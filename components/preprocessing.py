@@ -37,10 +37,9 @@ def categorize_rejection(comments):
     comments_lower = comments.lower()
     if "prompt injection" in comments_lower or "injection" in comments_lower or "hijack" in comments_lower or "adversarial text" in comments_lower:
         return "Scientific Integrity"
-    elif "hallucinat" in comments_lower or "fake citation" in comments_lower or "fabricated" in comments_lower or "malicious citation" in comments_lower or "do not refer" in comments_lower :
-        return "Hallucinated / Malicious Citations"
-    elif "bibliography" in comments_lower or "malformed" in comments_lower or "broken bib" in comments_lower or "corrupted citation" in comments_lower or "missing volume" in comments_lower:
-        return "Malformed / Broken Bibliography"
+    elif "hallucinat" in comments_lower or "fake citation" in comments_lower or "fabricated" in comments_lower or "malicious citation" in comments_lower or "do not refer" in comments_lower or "bibliography" in comments_lower or "malformed" in comments_lower or "broken bib" in comments_lower or "corrupted citation" in comments_lower or "missing volume" in comments_lower:
+        return "Hallucinated / Malformed Citations"
+        # return "Malformed / Broken Bibliography"
     elif "blind" in comments_lower or "anonym" in comments_lower or "author name" in comments_lower or "identity" in comments_lower or "identif" in comments_lower:
         return "Anonymity Violation"
     elif "page limit" in comments_lower or "exceeded" in comments_lower or "over-length" in comments_lower or "too long" in comments_lower:
