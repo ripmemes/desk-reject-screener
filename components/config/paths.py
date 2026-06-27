@@ -22,6 +22,10 @@ class ProjectPaths:
     @property
     def dataset_json(self) -> str:
         return str(self.data_dir / "processed" / "labeled_dataset.json")
+    
+    @property
+    def anchor_dataset_json(self) -> str:
+        return str(self.data_dir / "anchors" / "labeled_dataset.json")
 
     @property
     def manual_dataset_json(self) -> str:
