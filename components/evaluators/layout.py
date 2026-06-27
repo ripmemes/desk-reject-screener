@@ -1,7 +1,7 @@
 import os
 import json
 from evaluators.base import EvaluationStep
-from config.prompts import STEP_PROMPTS, SYSTEM_PROMPTS
+from config.prompts import SYSTEM_PROMPTS
 
 class LayoutCheck(EvaluationStep):
     def run(self, pdf_path: str, client, model_name: str, anchor_data_dict: dict) -> dict:
@@ -19,7 +19,7 @@ class LayoutCheck(EvaluationStep):
         payload_content = [
             {
                 "type": "text",
-                "text": f"{STEP_PROMPTS['step_2_layout_compliance']}\n\n[CONTEXT BENCHMARKS]:\n"
+                "text": "[CONTEXT BENCHMARKS]:\n"
             }
         ]
 

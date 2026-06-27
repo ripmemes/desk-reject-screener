@@ -54,6 +54,7 @@ class EvaluationStep:
                 if anchor_pdf_path and os.path.exists(anchor_pdf_path):
                     try:
                         visuals = {
+                            "page_1": self.get_page_as_base64_image(anchor_pdf_path, page_num=9),
                             "page_9": self.get_page_as_base64_image(anchor_pdf_path, page_num=9),
                             "page_10": self.get_page_as_base64_image(anchor_pdf_path, page_num=10)
                         }
@@ -75,9 +76,11 @@ class EvaluationStep:
         doc = fitz.open(pdf_path)
         if page_num > doc.page_count:
             doc.close()
-            raise IndexError(f"Requested page {page_num}, but paper only has {doc.page_count} pages.")
+            # raise IndexError(f"Requested page {page_num}, but paper only has {doc.page_count} pages.")
+            print(f"Requested page {page_num}, but paper only has {doc.page_count} pages.")
+            return None
         
-        page = doc.load_page(page_index := page_num - 1)
+        page = doc.load_page(page_index := page_num - 1) # fits page indexing starts at 0 afaik
         matrix = fitz.Matrix(zoom, zoom)
         pix = page.get_pixmap(matrix=matrix)
         image_bytes = pix.tobytes("png")

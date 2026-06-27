@@ -1,21 +1,22 @@
 import json
 from evaluators.base import EvaluationStep
-from config.prompts import STEP_PROMPTS, SYSTEM_PROMPTS
+from config.prompts import SYSTEM_PROMPTS
 
 class VisualBoundaryCheck(EvaluationStep):
     def run(self, pdf_path: str, client, model_name: str, anchor_data_dict: dict) -> dict:
-        target_image_b64 = self.get_page_as_base64_image(pdf_path, page_num=9)
+        target_page_9_b64 = self.get_page_as_base64_image(pdf_path, page_num=9)
+        target_page_10_b64 = self.get_page_as_base64_image(pdf_path, page_num=10)
 
         step_anchors = self.prepare_step_anchors(
             anchor_data=anchor_data_dict, 
-            target_categories=["Page Limit Exceeded"],
+            target_categories=["Over-Length"],
             requires_visuals=True
         )
 
         payload_content = [
             {
                 "type": "text",
-                "text": f"{STEP_PROMPTS['step_1_page_limit']}\n\n[CONTEXT BENCHMARKS]:\n"
+                "text": "[CONTEXT BENCHMARKS]:\n"
             }
         ]
 
@@ -33,6 +34,11 @@ class VisualBoundaryCheck(EvaluationStep):
                         "type": "image_url",
                         "image_url": {"url": f"data:image/png;base64,{accepted_papers[i]['visual_anchors']['page_9']}"}
                     })
+                if "page_10" in accepted_papers[i]['visual_anchors']:
+                    payload_content.append({
+                        "type": "image_url",
+                        "image_url": {"url": f"data:image/png;base64,{accepted_papers[i]['visual_anchors']['page_10']}"}
+                    })
             
             payload_content.append({
                 "type": "text",
@@ -43,18 +49,34 @@ class VisualBoundaryCheck(EvaluationStep):
                     "type": "image_url",
                     "image_url": {"url": f"data:image/png;base64,{reject_data['visual_anchors']['page_9']}"}
                 })
+            if "page_10" in reject_data['visual_anchors']:
+                payload_content.append({
+                    "type": "image_url",
+                    "image_url": {"url": f"data:image/png;base64,{reject_data['visual_anchors']['page_10']}"}
+                })
 
         payload_content.append({
             "type": "text",
             "text": "=== TARGET PAPER TO EVALUATE ==="
         })
+        if ( not target_page_10_b64 ) :
+            return {
+                "is_desk_reject": 0,
+                "rejection_category": None,
+                "detailed_justification": "Document Pages Number <= 9 Pages."
+            }
         
-        if target_image_b64:
+        
+        if target_page_9_b64:
             payload_content.append({
                 "type": "image_url",
-                "image_url": {"url": f"data:image/png;base64,{target_image_b64}"}
+                "image_url": {"url": f"data:image/png;base64,{target_page_9_b64}"}
             })
-
+        if target_page_10_b64:
+            payload_content.append({
+                "type": "image_url",
+                "image_url": {"url": f"data:image/png;base64,{target_page_10_b64}"}
+            })
         try:
             response = client.chat.completions.create(
                 model=model_name,
