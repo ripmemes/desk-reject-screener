@@ -42,8 +42,8 @@ def categorize_rejection(comments):
         # return "Malformed / Broken Bibliography"
     elif "blind" in comments_lower or "anonym" in comments_lower or "author name" in comments_lower or "identity" in comments_lower or "identif" in comments_lower:
         return "Anonymity Violation"
-    elif "page limit" in comments_lower or "exceeded" in comments_lower or "over-length" in comments_lower or "too long" in comments_lower:
-        return "Over-Length"
+    elif "page limit" in comments_lower or "exceeded" in comments_lower or "Over-length" in comments_lower or "too long" in comments_lower:
+        return "Over-length"
     elif "margin" in comments_lower or "layout" in comments_lower or "asymmetric" in comments_lower or "spacing" in comments_lower or "font" in comments_lower:
         return "Formatting"
     elif "template" in comments_lower or "incompat" in comments_lower or "wrong format" in comments_lower or "iclr style" in comments_lower:
