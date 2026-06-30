@@ -12,6 +12,7 @@ class TextualCheck(EvaluationStep):
             anchor_data=anchor_data, 
             target_categories=[
                 "Scientific Integrity"
+                ,"Unclassified/Other"
             ],
             requires_visuals=False
         )
@@ -22,8 +23,8 @@ class TextualCheck(EvaluationStep):
         rejected_papers = [data for id, data in step_anchors.items() if data['is_desk_reject'] == 1]
 
         #---- CAP
-        accepted_papers = accepted_papers[:25]
-        rejected_papers = rejected_papers[:25]
+        # accepted_papers = accepted_papers[:25]
+        # rejected_papers = rejected_papers[:25]
 
         #----
         

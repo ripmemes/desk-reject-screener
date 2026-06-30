@@ -9,7 +9,7 @@ class VisualBoundaryCheck(EvaluationStep):
 
         step_anchors = self.prepare_step_anchors(
             anchor_data=anchor_data_dict, 
-            target_categories=["Over-Length"],
+            target_categories=["Over-length"],
             requires_visuals=True
         )
 
@@ -24,8 +24,8 @@ class VisualBoundaryCheck(EvaluationStep):
         rejected_papers = [data for id, data in step_anchors.items() if data['is_desk_reject'] == 1]
 
         #---- CAP
-        accepted_papers = accepted_papers[:25]
-        rejected_papers = rejected_papers[:25]
+        # accepted_papers = accepted_papers[:25]
+        # rejected_papers = rejected_papers[:25]
 
         #----
 
