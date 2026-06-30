@@ -26,7 +26,7 @@ networkx==3.6.1
 nibabel==5.4.2
 nipype==1.11.0
 numpy==2.4.6
-openai==2.41.0
+openai==2.41.1
 openreview-py==2.2.0
 packaging==26.2
 pandas==3.0.3
