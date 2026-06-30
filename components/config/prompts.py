@@ -16,7 +16,7 @@ SYSTEM_PROMPTS = {
         "INSTRUCTIONS:\n"
         "Analyze these two consecutive pages to check for the page submissions limit boundary.\n"
         "Verify if the main body text, figures, or conclusions spill onto Page 10 before the "
-        "'References' or 'Bibliography' section officially begins. If main body content appears on Page 10, "
+        "'References' or 'Bibliography' or 'Reproducibility Statement' or 'Ethics Statement' section officially begins. If main body content appears on Page 10, "
         "flag it as a violation."
         "Crucially, if Page 10 contains exclusively pure images (such as appendix plots, standalone charts, or raw data visualizations) with no main narrative body text or standard concluding remarks, do not count this as a violation.\n\n"
         "OUTPUT ARCHITECTURE:\n"
