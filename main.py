@@ -12,13 +12,16 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'components'))
 
 from components.ingestion import run_ingestion
 from components.preprocessing import build_dataset
+from components.evaluate import calculate_metrics
 
-def main():
+def main(): # to test this program, it is better to just run 'python components/evaluate.py', because data is already fetched, and preprocessed
+            # the llm verdicts are cached in data/to_evaluate/eval_progress_checkpoint.json, if you want to send requests to the llm again and not use this cached data
+            # make sure that file or its content is deleted.
     UNIQUE_FLAG = 0
     run_ingestion(UNIQUE_FLAG)
-
     build_dataset()
-
+    calculate_metrics() # will evaluate the entire evaluation dataset in the to_evaluate folder
+    
 
 if __name__ == "__main__":
     main()
