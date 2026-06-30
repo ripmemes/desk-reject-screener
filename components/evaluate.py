@@ -21,6 +21,14 @@ def get_openrouter_pricing(model_name: str) -> tuple[float, float]:
 
 def calculate_metrics():
     paths = ProjectPaths()
+
+    STEP_CATEGORY_MAP = {
+        "VisualBoundaryCheck": "Over-length",
+        "LayoutCheck": "Formatting",
+        "AnonymityCheck": "Anonymity Violation",
+        "CitationCheck": "Hallucinated / Malformed Citations",
+        "TextualCheck": "Scientific Integrity"
+    }
     
     with open(paths.ground_truth_dataset, 'r', encoding='utf-8') as f:
         dataset = json.load(f)
@@ -42,6 +50,8 @@ def calculate_metrics():
     TP_no_cit, FP_no_cit, TN_no_cit, FN_no_cit = 0, 0, 0, 0
     right_wrong_reason_no_cit = 0
     total_eval_no_cit = 0
+
+
     # ----
     total_in = 0
     total_out = 0
@@ -107,43 +117,80 @@ def calculate_metrics():
                 print(f"\n Output value for the prediction {prediction} is invalid")
                 prediction = -1
 
-            if ground_truth == 1 and prediction == 1 and ground_truth_reason in prediction_reasons:
-                TP += 1
-                
-                for step_name in responsible_steps:
-                    if step_name in step_metrics:
-                        step_metrics[step_name]["TP"] += 1
-                        step_metrics[step_name]["total"] += 1
+            # if ground_truth == 1 and prediction == 1 and ground_truth_reason in prediction_reasons:
+            if ground_truth == 1 and prediction == 1:
                 with open(realtime_log_path, "a", encoding="utf-8") as rlog:
                     rlog.write(f"Forum ID  : {forum_id}\n")
                     rlog.write(f"Truth     : {ground_truth} | Reason: {ground_truth_reason}\n")
-                    rlog.write(f"TRUE POSITIVE ! Number of True Positives so far : {TP}\n")
+                    
+                    
+                    if ground_truth_reason in prediction_reasons: 
+                        TP += 1
+                        rlog.write(f"TRUE POSITIVE ! Number of True Positives so far : {TP}\n")
+                    else : 
+                        FN +=1
+                        rlog.write(f"FALSE NEGATIVE (Model failed to detect the true reason!)! Number of False Negatives so far : {FN}\n")
+                    
+                    # for step_name in responsible_steps:
+                    for step_name in step_metrics :
+                        target_category = STEP_CATEGORY_MAP[step_name]
+                        if step_name in responsible_steps :
+                            if target_category == ground_truth_reason :
+                                step_metrics[step_name]["TP"] += 1  
+                            else :
+                                step_metrics[step_name]["FP"] += 1  
+                            
+                        # ISSUE TO MENTION we don't know for sure whether the other desk rejection reasons are valid or not 
+                        # elif step_name in responsible_steps: 
+                        #     step_metrics[step_name]["FN"] += 1
+                        #     step_metrics[step_name]["total"] += 1    
+
+                        else : 
+                            if target_category == ground_truth_reason :
+                                step_metrics[step_name]["FN"] += 1
+                            else :
+                                step_metrics[step_name]["TN"] += 1
+                        
+                        step_metrics[step_name]["total"] += 1
+                                   
+
                     rlog.write(f"LLM Output: {prediction} | Reason: {prediction_reasons} | Steps: {responsible_steps}\n")
                     rlog.write(f"   Model Justification: {result.get('detailed_justification', 'No justification provided.')}")
                     rlog.write("-" * 60 + "\n")
-            elif ground_truth == 1 and prediction == 1 :
-                right_wrong_reason += 1
-                FN += 1
                 
-                for step_name in responsible_steps:
-                    if step_name in step_metrics:
-                        step_metrics[step_name]["FP"] += 1 # The isolated module falsely flagged a non-existent issue
-                        step_metrics[step_name]["total"] += 1
-                with open(realtime_log_path, "a", encoding="utf-8") as rlog:
-                    rlog.write(f"Forum ID  : {forum_id}\n")
-                    rlog.write(f"Truth     : {ground_truth} | Reason: {ground_truth_reason}\n")
-                    rlog.write(f"FALSE NEGATIVE (Model failed to detect the true reason!)! Number of False Negatives so far : {FN}\n")
-                    rlog.write(f"LLM Output: {prediction} | Reason: {prediction_reasons} | Steps: {responsible_steps}\n")
-                    rlog.write(f"   Model Justification: {result.get('detailed_justification', 'No justification provided.')}")
+            # elif ground_truth == 1 and prediction == 1 :
+            #     right_wrong_reason += 1
+            #     FN += 1
+                
+            #     for step_name in responsible_steps:
+            #         if step_name in step_metrics:
+            #             step_metrics[step_name]["FP"] += 1 # The isolated module falsely flagged a non-existent issue
+            #             step_metrics[step_name]["total"] += 1
+            #     with open(realtime_log_path, "a", encoding="utf-8") as rlog:
+            #         rlog.write(f"Forum ID  : {forum_id}\n")
+            #         rlog.write(f"Truth     : {ground_truth} | Reason: {ground_truth_reason}\n")
+            #         rlog.write(f"FALSE NEGATIVE (Model failed to detect the true reason!)! Number of False Negatives so far : {FN}\n")
+            #         rlog.write(f"LLM Output: {prediction} | Reason: {prediction_reasons} | Steps: {responsible_steps}\n")
+            #         rlog.write(f"   Model Justification: {result.get('detailed_justification', 'No justification provided.')}")
                     rlog.write("-" * 60 + "\n")
 
             elif ground_truth == 0 and prediction == 1:
                 FP += 1
                 
-                for step_name in responsible_steps:
-                    if step_name in step_metrics:
+
+                for step_name in step_metrics :
+                    if step_name in responsible_steps: 
                         step_metrics[step_name]["FP"] += 1
                         step_metrics[step_name]["total"] += 1
+                    else : 
+                        step_metrics[step_name]["TN"] += 1
+                        step_metrics[step_name]["total"] += 1
+
+
+                # for step_name in responsible_steps:
+                #     if step_name in step_metrics:
+                #         step_metrics[step_name]["FP"] += 1
+                #         step_metrics[step_name]["total"] += 1
                 with open(realtime_log_path, "a", encoding="utf-8") as rlog:
                     rlog.write(f"Forum ID  : {forum_id}\n")
                     rlog.write(f"Truth     : {ground_truth} | Reason: {ground_truth_reason}\n")
@@ -176,7 +223,11 @@ def calculate_metrics():
                 FN += 1
                 
                 for step_name in step_metrics:
-                    step_metrics[step_name]["FN"] += 1
+                    target_category = STEP_CATEGORY_MAP.get(step_name)
+                    if ground_truth_reason == target_category:
+                        step_metrics[step_name]["FN"] += 1
+                    else:
+                        step_metrics[step_name]["TN"] += 1
                     step_metrics[step_name]["total"] += 1
                 with open(realtime_log_path, "a", encoding="utf-8") as rlog:
                     rlog.write(f"Forum ID  : {forum_id}\n")
@@ -226,6 +277,7 @@ def calculate_metrics():
                 elif ground_truth == 1 and pred_no_cit == 0:
                     FN_no_cit += 1
 
+
             
         except Exception as e:
             print(f"  [!] ERROR on {forum_id}: {e}. Continuing...")
@@ -245,6 +297,7 @@ def calculate_metrics():
     acc_no_cit = (TP_no_cit + TN_no_cit) / total_eval_no_cit if total_eval_no_cit > 0 else 0.0
 
     # ---
+
     
     print(f"\nFetching live pricing for model: {client.model_name}...")
     INPUT_PRICE_PER_1M_USD, OUTPUT_PRICE_PER_1M_USD = get_openrouter_pricing(client.model_name)
@@ -300,7 +353,7 @@ def calculate_metrics():
     print(f"Tokens per Euro:      {tokens_per_euro:,.0f}")
     print(f"Accuracy per Euro (Economic Density): {accuracy_per_euro:.4f}")
 
-    # === ADDED: "No Citations" Metrics ==============================
+    # "No Citations" Metrics
     print("\n" + "="*45)
     print("      METRICS (EXCLUDING CITATION CHECK)")
     print("="*45)
@@ -315,7 +368,7 @@ def calculate_metrics():
     print(f"Recall:    {rec_no_cit:.4f}")
     print(f"F1 Score:  {f1_no_cit:.4f}")
     print(f"Accuracy:  {acc_no_cit:.4f}")
-    # =================================================================
+    # ----
     
     final_error_report = "".join(error_log_stream) if error_log_stream else "No structural errors or classification discrepancies recorded during evaluation."
     final_error_report += f"\nTotal evaluated papers: {total_evaluated_samples}\n"
