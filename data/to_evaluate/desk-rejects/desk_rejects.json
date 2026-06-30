@@ -308,7 +308,7 @@
     "Exceeds page limit ( id: voHHakBdQn )": {
         "id": "voHHakBdQn",
         "title": "Evaluating point-light biological motion in multimodal large language models",
-        "rejection_category": "Over-Length",
+        "rejection_category": "Over-length",
         "comments": "Exceeds page limit",
         "forum_id": "voHHakBdQn",
         "submission_id": "voHHakBdQn",
@@ -325,7 +325,7 @@
     "Exceeds page limit. ( id: maaF8UQKBC )": {
         "id": "maaF8UQKBC",
         "title": "Alternators With Noise Models",
-        "rejection_category": "Over-Length",
+        "rejection_category": "Over-length",
         "comments": "Exceeds page limit.",
         "forum_id": "maaF8UQKBC",
         "submission_id": "maaF8UQKBC",
@@ -359,7 +359,7 @@
     "Exceeds page limit. ( id: lH60NwUL4K )": {
         "id": "lH60NwUL4K",
         "title": "Inductive Triplet Fine Tuning for Small Language Models",
-        "rejection_category": "Over-Length",
+        "rejection_category": "Over-length",
         "comments": "Exceeds page limit.",
         "forum_id": "lH60NwUL4K",
         "submission_id": "lH60NwUL4K",
@@ -444,7 +444,7 @@
     "Exceeds page limit. ( id: BqV8qbLDqR )": {
         "id": "BqV8qbLDqR",
         "title": "Causality for Tabular Data Synthesis: A High-Order Structure Causal Benchmark Framework",
-        "rejection_category": "Over-Length",
+        "rejection_category": "Over-length",
         "comments": "Exceeds page limit.",
         "forum_id": "BqV8qbLDqR",
         "submission_id": "BqV8qbLDqR",
@@ -478,7 +478,7 @@
     "Exceeds page limit. ( id: pRARYIDGF8 )": {
         "id": "pRARYIDGF8",
         "title": "iCLP: Large Language Model Reasoning with Implicit Cognition Latent Planning",
-        "rejection_category": "Over-Length",
+        "rejection_category": "Over-length",
         "comments": "Exceeds page limit.",
         "forum_id": "pRARYIDGF8",
         "submission_id": "pRARYIDGF8",
@@ -580,7 +580,7 @@
     "Exceeds page limit. ( id: 5EBNjlEWnp )": {
         "id": "5EBNjlEWnp",
         "title": "RoboAct-CLIP: Video-Driven Atomic Action Understanding for Robotics",
-        "rejection_category": "Over-Length",
+        "rejection_category": "Over-length",
         "comments": "Exceeds page limit.",
         "forum_id": "5EBNjlEWnp",
         "submission_id": "5EBNjlEWnp",
@@ -716,7 +716,7 @@
     "Exceeds page limit. ( id: DlI9YjNer6 )": {
         "id": "DlI9YjNer6",
         "title": "Multimodal Autism Detection Using Genetic Algorithm-Optimized Neural Networks",
-        "rejection_category": "Over-Length",
+        "rejection_category": "Over-length",
         "comments": "Exceeds page limit.",
         "forum_id": "DlI9YjNer6",
         "submission_id": "DlI9YjNer6",
@@ -784,7 +784,7 @@
     "Exceeds page limit. ( id: bNDVJ9omfk )": {
         "id": "bNDVJ9omfk",
         "title": "NaturalGAIA: Pushing the Frontiers of GUI Agents with a Challenging Benchmark and High-Quality Trajectory Dataset",
-        "rejection_category": "Over-Length",
+        "rejection_category": "Over-length",
         "comments": "Exceeds page limit.",
         "forum_id": "bNDVJ9omfk",
         "submission_id": "bNDVJ9omfk",
@@ -886,7 +886,7 @@
     "Exceeds page limit. ( id: Irv9ELAsut )": {
         "id": "Irv9ELAsut",
         "title": "Sublinear Sketches for Approximate Nearest Neighbor and Kernel Density Estimation",
-        "rejection_category": "Over-Length",
+        "rejection_category": "Over-length",
         "comments": "Exceeds page limit.",
         "forum_id": "Irv9ELAsut",
         "submission_id": "Irv9ELAsut",
@@ -903,7 +903,7 @@
     "Exceeds page limit. ( id: ubZyjXJKhm )": {
         "id": "ubZyjXJKhm",
         "title": "Bench360: Benchmarking Local LLM Inference from 360$\\degree$",
-        "rejection_category": "Over-Length",
+        "rejection_category": "Over-length",
         "comments": "Exceeds page limit.",
         "forum_id": "ubZyjXJKhm",
         "submission_id": "ubZyjXJKhm",
@@ -920,7 +920,7 @@
     "Above page limit. ( id: HMEUWxEBVG )": {
         "id": "HMEUWxEBVG",
         "title": "SynIL: Leveraging Synergy for Offline Imitation Learning from Imperfect Demonstration Datasets",
-        "rejection_category": "Over-Length",
+        "rejection_category": "Over-length",
         "comments": "Above page limit.",
         "forum_id": "HMEUWxEBVG",
         "submission_id": "HMEUWxEBVG",
@@ -937,7 +937,7 @@
     "Exceeds page limit. ( id: JN2h0CpdCO )": {
         "id": "JN2h0CpdCO",
         "title": "A General and Efficient SE(3)-Equivariant Graph Framework: Encoding Symmetries with Complete Differential Invariants and Frames",
-        "rejection_category": "Over-Length",
+        "rejection_category": "Over-length",
         "comments": "Exceeds page limit.",
         "forum_id": "JN2h0CpdCO",
         "submission_id": "JN2h0CpdCO",
@@ -954,7 +954,7 @@
     "Over page limit ( id: 7vpOLBH6r5 )": {
         "id": "7vpOLBH6r5",
         "title": "LLM-Driven Video Inpainting with Explicit Mask Guidance and Warp-Relation Consistency",
-        "rejection_category": "Over-Length",
+        "rejection_category": "Over-length",
         "comments": "Over page limit",
         "forum_id": "7vpOLBH6r5",
         "submission_id": "7vpOLBH6r5",
@@ -971,7 +971,7 @@
     "Exceeds page limit. ( id: pc5eZCneYm )": {
         "id": "pc5eZCneYm",
         "title": "LEARNING TO PONDER: ADAPTIVE REASONING IN LATENT SPACE",
-        "rejection_category": "Over-Length",
+        "rejection_category": "Over-length",
         "comments": "Exceeds page limit.",
         "forum_id": "pc5eZCneYm",
         "submission_id": "pc5eZCneYm",
@@ -988,7 +988,7 @@
     "Exceeds page limit. ( id: E0qAFedkII )": {
         "id": "E0qAFedkII",
         "title": "A Novel Combined Successive Gradient Method",
-        "rejection_category": "Over-Length",
+        "rejection_category": "Over-length",
         "comments": "Exceeds page limit.",
         "forum_id": "E0qAFedkII",
         "submission_id": "E0qAFedkII",
@@ -1175,7 +1175,7 @@
     "Exceeds page limit. ( id: wDhD0EWomR )": {
         "id": "wDhD0EWomR",
         "title": "The Gaussian-Multinoulli Restricted Boltzmann Machine: A Potts Model Extension of the GRBM",
-        "rejection_category": "Over-Length",
+        "rejection_category": "Over-length",
         "comments": "Exceeds page limit.",
         "forum_id": "wDhD0EWomR",
         "submission_id": "wDhD0EWomR",
@@ -1209,7 +1209,7 @@
     "Exceeds page limit. ( id: BNbwKkVmI5 )": {
         "id": "BNbwKkVmI5",
         "title": "SLaD: Sub-modal Label-aware Disentanglement for Multimodal Sentiment Analysis",
-        "rejection_category": "Over-Length",
+        "rejection_category": "Over-length",
         "comments": "Exceeds page limit.",
         "forum_id": "BNbwKkVmI5",
         "submission_id": "BNbwKkVmI5",
@@ -1277,7 +1277,7 @@
     "Exceeds page limit. ( id: 9EMEcVwdAX )": {
         "id": "9EMEcVwdAX",
         "title": "A High-Fidelity Text-to-Image Editing Approach: Gaussian Fluid Dynamics in Latent Space",
-        "rejection_category": "Over-Length",
+        "rejection_category": "Over-length",
         "comments": "Exceeds page limit.",
         "forum_id": "9EMEcVwdAX",
         "submission_id": "9EMEcVwdAX",
@@ -1362,7 +1362,7 @@
     "Over page limit. ( id: SB4LrFt5Zu )": {
         "id": "SB4LrFt5Zu",
         "title": "Universal Physical Education: Training-free Action Quality Assessment Based on Dynamic Time Warping",
-        "rejection_category": "Over-Length",
+        "rejection_category": "Over-length",
         "comments": "Over page limit.",
         "forum_id": "SB4LrFt5Zu",
         "submission_id": "SB4LrFt5Zu",
@@ -1413,7 +1413,7 @@
     "Exceeds page limit ( id: PBfouv3Xgs )": {
         "id": "PBfouv3Xgs",
         "title": "AMC-Solver: Adaptive Multi-Step Cascade with Midpoint Prediction for Efficient Rectified Flow Sampling",
-        "rejection_category": "Over-Length",
+        "rejection_category": "Over-length",
         "comments": "Exceeds page limit",
         "forum_id": "PBfouv3Xgs",
         "submission_id": "PBfouv3Xgs",
