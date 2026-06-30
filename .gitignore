@@ -35,3 +35,5 @@ ingestion3.py
 ingestion5.py
 evaluate_backup.py
 ingestion4.py
+evaluate3.py
+eval_progress_checkpoint_re.json
