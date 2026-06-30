@@ -2,6 +2,20 @@ from dotenv import load_dotenv
 import os
 import openreview
 import json
+from enum import StrEnum
+from config.misc import *
+from preprocessing import categorize_rejection
+from config.paths import ProjectPaths
+
+class desk_rej_violations(StrEnum):
+    OVER_LENGTH = "Over-length"
+    FORMATTING = "Formatting"
+    ANONYMITY_VIOLATION = "Anonymity Violation"
+    HALLUCINATED_MALFORMED_CITATIONS = "Hallucinated / Malformed Citations"
+    SCIENTIFIC_INTEGRITY = "Scientific Integrity"
+    UNCLASSIFED = "Unclassified/Other"
+
+
 
 # this code was partially generated with the assistance of GitHub Copilot and Google Gemini, and thoroughly reviewed and adjusted by the author.
 
@@ -37,13 +51,16 @@ Args:
     UNIQUE_FLAG : When set to 1, desk-rejects with unique reasons will be fetched
 """
 def run_ingestion(UNIQUE_FLAG):
+    paths = ProjectPaths()
     script_dir = os.path.dirname(__file__)
     dotenv_path = os.path.join(script_dir, '..', '.env')
     load_dotenv(dotenv_path)
 
     username = os.getenv("OPEN_REVIEW_USERNAME")
     pw = os.getenv("OPEN_REVIEW_PASSWORD")
-    n = 60
+    n = 4
+    n_desk_rej = 15
+    dp_arr = [0] * 6
 
     client = openreview.api.OpenReviewClient(
         baseurl='https://api2.openreview.net',
@@ -51,110 +68,168 @@ def run_ingestion(UNIQUE_FLAG):
         password=pw
     )
 
+    violation_to_idx = {violation: i for i, violation in enumerate(desk_rej_violations)}
+
     try:
-        INVITATIONS_FILE = "invitations.json"
-        DESK_REJECTS_FILE = os.path.join(script_dir,"..", "data","raw","desk-rejects","desk_rejects.json")
-        ACCEPTED_PAPERS_FILE = os.path.join(script_dir,"..","data","raw","accepted", "accepted_papers.json")
+        # INVITATIONS_FILE = "invitations.json"
+        DESK_REJECTS_FILE = os.path.join(script_dir,"..", "data","raw","desk-rejects","desk_rejects1.json")
+        ACCEPTED_PAPERS_FILE = os.path.join(script_dir,"..","data","raw","accepted", "accepted_papers1.json")
+
+        # venue_ids = ['ICLR.cc/2026/Conference', 'ICLR.cc/2025/Conference', 'ICLR.cc/2024/Conference', 'ICLR.cc/2023/Conference']
+        venue_id = 'ICLR.cc/2026/Conference' 
+        # venue_id = 'ICLR.cc/2026/Conference'
+        print(f"[DEBUG] Fetching venue group metadata for: {venue_id}")
 
 
-        venue_id = 'ICLR.cc/2026/Conference'
+        # for desk rejected papers
+        venue_group = client.get_group(venue_id) # might remove
+        desk_rejected_venue_id = venue_group.content.get('desk_rejected_venue_id', {}).get('value')
+
+        if not desk_rejected_venue_id:
+            desk_rejected_venue_id = f"{venue_id}/Desk_Rejected_Submission"
+
+        desk_rejected_submissions = client.get_all_notes(content={'venueid': desk_rejected_venue_id})
+
+        # for peer review rejected papers
+
+        rejected_venue_id = f"{venue_id}/Rejected_Submission"
+        print(f"[DEBUG] Requesting compliant papers from target: '{rejected_venue_id}'")
+
+        peer_rejected_submissions = client.get_all_notes(content={'venueid': rejected_venue_id})
+        print(f"[DEBUG] API Query completed. Total compliant papers found: {len(peer_rejected_submissions)}")
+
+
+        # invitation_data = {}
+        accepted_data = {}
+        desk_rej_data = {}
+        desk_rej_unique_dict = {violation: [] for violation in desk_rej_violations}
+
+        # invitation_data = parse_existing_data(INVITATIONS_FILE)
+        # accepted_data = parse_existing_data(ACCEPTED_PAPERS_FILE)
+        # desk_rej_data = parse_existing_data(DESK_REJECTS_FILE)
+
         
-        invitations = client.get_invitations(
-            prefix=venue_id,
-            type='note'
-        )
-        # with open(INVITATIONS_FILE, 'w', encoding='utf-8') as f:
-        #     dat = {'invitations': [invitation.id for invitation in invitations]}
-        #     json.dump(dat, f, ensure_ascii=False, indent=4)
-
-        invitation_data = parse_existing_data(INVITATIONS_FILE)
-        accepted_data = parse_existing_data(ACCEPTED_PAPERS_FILE)
-        desk_rej_data = parse_existing_data(DESK_REJECTS_FILE)
         
-        for (_, invitation) in enumerate(invitations):
-            if len(desk_rej_data) >= n and len(accepted_data) >= n :
+        for (idx, note) in enumerate(desk_rejected_submissions):
+            all_quotas_full = all(count >= n_desk_rej for count in dp_arr)
+            if len(desk_rej_data) >= n or all_quotas_full:
+                print(f"[DEBUG] Loop terminates at item index {idx}. Targets met, quitting loop...")
+                break
+            
+                
+            if note.forum in TARGET_DESK_REJECTS : 
+                continue
+
+            print(f"   [DEBUG] Fetching thread replies for Paper {note.number} (Forum ID: {note.forum})")
+            all_replies = client.get_all_notes(forum=note.forum)
+
+            comments = "No Comments"
+            decision_note_ref = None
+
+            for reply in all_replies:
+                if reply.invitations and any('Desk_Rejection' in inv for inv in reply.invitations):
+                    decision_note_ref = reply
+                    comments = reply.content.get('desk_reject_comments', {}).get('value', 'No Comments')
+                    break
+            if comments == "No Comments":
+                print(f"   [DEBUG] Warning: Desk_Rejection note field missing. Checking submission content field extensions.")
+                comments = note.content.get('desk_reject_comments', {}).get('value', 'No Comments') # might remove
+            
+            raw_reason = categorize_rejection(comments.split('\n')[0].split(':')[0].strip())
+            try:
+                rej_reason = desk_rej_violations(raw_reason)
+            except ValueError:
+                rej_reason = desk_rej_violations.UNCLASSIFED
+
+            arr_idx = violation_to_idx[rej_reason]
+            
+        
+            dp_arr[arr_idx] += 1
+            desk_rej_unique_dict[rej_reason].append(note.forum)
+
+            print(f"   [DEBUG] SUCCESS: Logged Desk Reject Paper {note.forum} under '{rej_reason}'. (Quota: {dp_arr[arr_idx]}/{n_desk_rej})")
+
+            reason_key = comments.split(':')[0].strip() if ':' in comments else comments.split('.')[0].strip() if UNIQUE_FLAG else comments
+            
+            obj = {
+                'id': note.id,
+                'title': note.content.get('title', {}).get('value', 'No Title'),
+                'rejection_category' : raw_reason,
+                'comments': comments,
+                'forum_id': note.forum,
+                'submission_id': note.id,
+                'program_chairs': decision_note_ref.signatures if decision_note_ref else note.signatures,
+                'readers': note.readers,
+                'last_modified': note.tmdate,
+                'created_date': note.cdate,
+                'license': note.license if hasattr(note, 'license') else 'CC BY 4.0'
+            }
+
+
+            target_dir = os.path.join(script_dir, "..", "data", "raw", "desk-rejects")
+            
+            if UNIQUE_FLAG:
+                if reason_key not in desk_rej_data:
+                    desk_rej_data[reason_key] = obj
+                    download_pdf(client, note.forum, note.id, target_dir)
+            else:
+                dict_key = f"{reason_key} ( id: {note.id} )"
+                desk_rej_data[dict_key] = obj
+                download_pdf(client, note.forum, note.id, target_dir)
+
+        for idx, note in enumerate(peer_rejected_submissions):
+            if note.forum not in EVALUATION_ACCEPTED_PAPERS :
+                continue
+
+
+            if len(accepted_data) >= n:
+                print(f"[DEBUG] Control group processing terminated. Target quota of {n} papers met.")
                 break
 
+            if note.forum in INVALID_ACCEPTED_PAPERS or note.forum in TARGET_ACCEPTED_PAPERS:
+                continue     
             
-            invitation_data[invitation.id] = {
-                'id': invitation.id,
-                'content': invitation.content,
-                'signatures': invitation.signatures,
-                'writers': invitation.writers,
-                'readers': invitation.readers,
-                'invitees': invitation.invitees
+
+            print(f"   [DEBUG] SUCCESS: Logging control paper {note.forum} (Paper {note.number})")
+            
+            obj = {
+                'id': note.id,
+                'title': note.content.get('title', {}).get('value', 'No Title'),
+                'decision': 'Reject',
+                'comment': 'Passed compliance checking gates, rejected via peer review context.',
+                'forum_id': note.forum,
+                'submission_id': note.id,
+                'program_chairs': note.signatures,
+                'readers': note.readers,
+                'last_modified': note.tmdate,
+                'created_date': note.cdate,
+                'license': note.license if hasattr(note, 'license') else 'CC BY 4.0'
             }
             
+            accepted_data[note.forum] = obj
+            download_pdf(client, note.forum, note.id, paths.raw_data_dir / "accepted")
+            
 
-            if invitation.id.endswith('/-/Desk_Rejection_Reversion') :
-                new_id = invitation.id.replace('/-/Desk_Rejection_Reversion', '/-/Desk_Rejection')  
-                desk_rejects = client.get_all_notes(invitation=new_id)
+        print("\n=================== RUN ANALYSIS DESK REJECTS ===================")
+        print(f"[DEBUG] Total varied desk reject dataset entries gathered: {len(desk_rej_data)}")
+        print("[DEBUG] Categorization Index Breakdown:")
+        for violation in desk_rej_violations:
+            idx = violation_to_idx[violation]
+            print(f"  - {violation}: {dp_arr[idx]} papers saved")
+        print("===================================================\n")
 
-                for desk_rej_note in desk_rejects :
-                    if len(desk_rej_data) >= n :
-                        break
-                    comments = desk_rej_note.content.get('desk_reject_comments', {}).get('value', 'No Comments')
-                    reason_key = comments.split(':')[0].strip() if ':' in comments else comments.split('.')[0].strip() if UNIQUE_FLAG else comments
-                    obj ={
-                        'id': desk_rej_note.id,
-                        'title': desk_rej_note.content.get('title', {}).get('value', 'No Title'),
-                        'comments': comments,
-                        'forum_id': desk_rej_note.forum,
-                        'submission_id': desk_rej_note.replyto,
-                        'program_chairs': desk_rej_note.signatures,
-                        'readers': desk_rej_note.readers,
-                        'last_modified': desk_rej_note.tmdate,
-                        'created_date': desk_rej_note.cdate,
-                        'license': desk_rej_note.license
-                    }
-                    if UNIQUE_FLAG:
-                        if reason_key not in desk_rej_data :
-                            desk_rej_data[reason_key] = obj
+        json_dumps_custom(DESK_REJECTS_FILE, desk_rej_data)
+        print("[DEBUG] Ingestion execution completed successfully.\n")
 
-                            target_dir = os.path.join(script_dir, "..", "data", "raw", "desk-rejects")
-                            download_pdf(client, desk_rej_note.forum,desk_rej_note.id, target_dir)
-                    else :
-                        desk_rej_data[reason_key +" ( id: " +desk_rej_note.id + " )"] = obj
+        print("\n=================== CONTROL GROUP ANALYSIS ===================")
+        print(f"[DEBUG] Total peer review rejected dataset entries gathered: {len(accepted_data)}")
+        print("===================================================\n")
+        
+        json_dumps_custom(ACCEPTED_PAPERS_FILE, accepted_data)
+        print("[DEBUG] Entire accepted-only ingestion pipeline execution finished successfully.\n")
 
-                        target_dir = os.path.join(script_dir, "..", "data", "raw", "desk-rejects")
-                        download_pdf(client, desk_rej_note.forum,desk_rej_note.id, target_dir)
-
-            elif invitation.id.endswith('/-/Public_Comment'):
-                new_id = invitation.id.replace('/-/Public_Comment', '/-/Decision')  
-                decision_notes = client.get_all_notes(invitation=new_id)
-                for decision_note in decision_notes:
-                    
-                    
-                    if len(accepted_data) >= n :
-                        break
-
-                    # print(decision_note.content['decision']['value'].lower())
-                    # if "accept" in decision_note.content['decision']['value'].lower():
-                    # Since it's quite complicated to fetch the initial versions of accepted paper, which is what we want to feed the llm
-                    # It's decided that instead papers that have passed the desk-rejection step but were later rejected would be used as accepted papers.
-                    if "reject" in decision_note.content['decision']['value'].lower():
-                        
-                        obj = {
-                            'id': decision_note.id,
-                            'title': decision_note.content.get('title', {}).get('value', 'No Title'),
-                            'decision': decision_note.content.get('decision', {}).get('value', 'No Decision'),
-                            'comment': decision_note.content.get('comment', {}).get('value', 'No Comment'),
-                            'forum_id': decision_note.forum,
-                            'submission_id': decision_note.replyto,
-                            'program_chairs': decision_note.signatures,
-                            'readers': decision_note.readers,
-                            'last_modified': decision_note.tmdate,
-                            'created_date': decision_note.cdate,
-                            'license': decision_note.license
-                        }
-                        accepted_data[decision_note.id] = obj
-                        target_dir = os.path.join(script_dir, "..", "data", "raw", "accepted")
-                        download_pdf(client,decision_note.forum, decision_note.id, target_dir)
-
-
-        json_dumps_custom(INVITATIONS_FILE,invitation_data)
-        json_dumps_custom(DESK_REJECTS_FILE,desk_rej_data)
-        json_dumps_custom(ACCEPTED_PAPERS_FILE,accepted_data)
+        print(desk_rej_unique_dict)
+        # json_dumps_custom(INVITATIONS_FILE,invitation_data)
         print("Ingestion complete. Desk rejects and accepted papers data have been saved.\n")
 
     except Exception as e:
