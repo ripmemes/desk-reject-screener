@@ -11,4 +11,4 @@ If you want to clear the saved progress and query the live LLM again, delete the
 
 The terminal output prints the summary metrics first, followed by the specific diagnostic judgment for each error (the false positives and false negatives). 
 
-Because this text stream is extremely long, it is highly recommended to dump the output straight into a file for review: python components/evaluate.py > output.txt.
+Because this text stream is extremely long, it is highly recommended to dump the output straight into a file for review: `python components/evaluate.py > output.txt`.
